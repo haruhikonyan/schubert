@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: teams
+#
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  password   :string           not null
+#  mail       :string
+#  url        :string
+#  free_text  :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Team < ApplicationRecord
     has_many :recruit_requests
     has_many :team_types

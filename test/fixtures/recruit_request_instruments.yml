@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: recruit_request_instruments
+#
+#  id                 :integer          not null, primary key
+#  recruit_request_id :integer          not null
+#  instrument_id      :integer          not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined. If you add columns to the
