@@ -1,0 +1,17 @@
+<%= form_for(recruit_request) do |f| %>
+  <% if recruit_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recruit_request.errors.count, "error") %> prohibited this recruit_request from being saved:</h2>
+
+      <ul>
+      <% recruit_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
