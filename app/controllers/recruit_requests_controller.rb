@@ -24,7 +24,6 @@ class RecruitRequestsController < ApplicationController
   # POST /recruit_requests
   # POST /recruit_requests.json
   def create
-    binding.pry
     team = Team.new(team_params)
     @recruit_request = RecruitRequest.new(recruit_request_params)    
     @recruit_request.team = team
