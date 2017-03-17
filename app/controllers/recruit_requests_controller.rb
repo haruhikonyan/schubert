@@ -14,7 +14,7 @@ class RecruitRequestsController < ApplicationController
 
   # GET /recruit_requests/new
   def new
-    @recruit_request = RecruitRequest.new
+    @recruit_request = RecruitRequest.new(team: Team.new)
   end
 
   # GET /recruit_requests/1/edit
@@ -24,7 +24,10 @@ class RecruitRequestsController < ApplicationController
   # POST /recruit_requests
   # POST /recruit_requests.json
   def create
-    @recruit_request = RecruitRequest.new(recruit_request_params)
+    binding.pry
+    team = Team.new(team_params)
+    @recruit_request = RecruitRequest.new(recruit_request_params)    
+    @recruit_request.team = team
 
     respond_to do |format|
       if @recruit_request.save
@@ -67,8 +70,18 @@ class RecruitRequestsController < ApplicationController
       @recruit_request = RecruitRequest.find(params[:id])
     end
 
+    def set_team
+      @team = Team.find(params[:id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def recruit_request_params
-      params.fetch(:recruit_request, {})
+      # TODO view からくる params が微妙な入れ子になってて要修正？
+      # <ActionController::Parameters {"team"=>{"name"=>"ddd", "password"=>"ppp"}, "practice_place"=>"aaa", "practoce_time"=>"ttt", "free_text"=>"fff"} permitted: false>
+      params[:recruit_request].except(:team).try!(:permit!)
+    end
+
+    def team_params
+      params[:recruit_request][:team].try!(:permit!)
     end
 end
