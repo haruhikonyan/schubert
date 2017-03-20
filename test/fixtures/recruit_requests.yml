@@ -4,7 +4,7 @@
 #
 #  id               :integer          not null, primary key
 #  practice_place   :string
-#  practoce_time    :string
+#  practice_time    :string
 #  free_text        :text
 #  post_period_from :datetime
 #  post_period_to   :datetime

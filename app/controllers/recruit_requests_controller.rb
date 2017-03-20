@@ -25,7 +25,7 @@ class RecruitRequestsController < ApplicationController
   # POST /recruit_requests.json
   def create
     team = Team.new(team_params)
-    @recruit_request = RecruitRequest.new(recruit_request_params)    
+    @recruit_request = RecruitRequest.new(recruit_request_params)
     @recruit_request.team = team
 
     respond_to do |format|
@@ -43,7 +43,7 @@ class RecruitRequestsController < ApplicationController
   # PATCH/PUT /recruit_requests/1.json
   def update
     respond_to do |format|
-      if @recruit_request.update(recruit_request_params)
+      if @recruit_request.team.update(team_params) && @recruit_request.update(recruit_request_params)
         format.html { redirect_to @recruit_request, notice: 'Recruit request was successfully updated.' }
         format.json { render :show, status: :ok, location: @recruit_request }
       else

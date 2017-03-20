@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20170311090855) do
 
   create_table "recruit_requests", force: :cascade do |t|
     t.string   "practice_place"
-    t.string   "practoce_time"
+    t.string   "practice_time"
     t.text     "free_text"
     t.datetime "post_period_from"
     t.datetime "post_period_to"
