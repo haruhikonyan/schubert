@@ -31,6 +31,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :instrument_ids %><br/>
+    <%= f.select :instrument_ids, Instrument.all.map {|i| [i.name, i.id]}, {}, multiple: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :free_text %>
     <%= f.text_field :free_text %>
   </div>
