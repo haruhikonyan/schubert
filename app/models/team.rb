@@ -13,6 +13,9 @@
 #
 
 class Team < ApplicationRecord
+    # SecurePassword有効
+    has_secure_password
+
     has_many :recruits
     has_many :team_types
     has_many :types, :through => :team_types
