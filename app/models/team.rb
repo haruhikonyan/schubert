@@ -13,7 +13,7 @@
 #
 
 class Team < ApplicationRecord
-    has_many :recruit_requests
+    has_many :recruits
     has_many :team_types
     has_many :types, :through => :team_types
     has_many :team_regions

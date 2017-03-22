@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: recruit_requests
+# Table name: recruits
 #
 #  id               :integer          not null, primary key
 #  practice_place   :string

@@ -1,6 +1,6 @@
-class CreateRecruitRequests < ActiveRecord::Migration[5.0]
+class CreateRecruits < ActiveRecord::Migration[5.0]
   def change
-    create_table :recruit_requests do |t|
+    create_table :recruits do |t|
       t.string :practice_place
       t.string :practice_time
       t.text :free_text

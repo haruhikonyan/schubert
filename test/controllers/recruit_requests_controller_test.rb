@@ -1,48 +1,48 @@
 require 'test_helper'
 
-class RecruitRequestsControllerTest < ActionDispatch::IntegrationTest
+class RecruitsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @recruit_request = recruit_requests(:one)
+    @recruit = recruits(:one)
   end
 
   test "should get index" do
-    get recruit_requests_url
+    get recruits_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_recruit_request_url
+    get new_recruit_url
     assert_response :success
   end
 
-  test "should create recruit_request" do
-    assert_difference('RecruitRequest.count') do
-      post recruit_requests_url, params: { recruit_request: {  } }
+  test "should create recruit" do
+    assert_difference('Recruit.count') do
+      post recruits_url, params: { recruit: {  } }
     end
 
-    assert_redirected_to recruit_request_url(RecruitRequest.last)
+    assert_redirected_to recruit_url(Recruit.last)
   end
 
-  test "should show recruit_request" do
-    get recruit_request_url(@recruit_request)
+  test "should show recruit" do
+    get recruit_url(@recruit)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_recruit_request_url(@recruit_request)
+    get edit_recruit_url(@recruit)
     assert_response :success
   end
 
-  test "should update recruit_request" do
-    patch recruit_request_url(@recruit_request), params: { recruit_request: {  } }
-    assert_redirected_to recruit_request_url(@recruit_request)
+  test "should update recruit" do
+    patch recruit_url(@recruit), params: { recruit: {  } }
+    assert_redirected_to recruit_url(@recruit)
   end
 
-  test "should destroy recruit_request" do
-    assert_difference('RecruitRequest.count', -1) do
-      delete recruit_request_url(@recruit_request)
+  test "should destroy recruit" do
+    assert_difference('Recruit.count', -1) do
+      delete recruit_url(@recruit)
     end
 
-    assert_redirected_to recruit_requests_url
+    assert_redirected_to recruits_url
   end
 end

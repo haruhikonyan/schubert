@@ -1,23 +1,23 @@
-<%= form_for(recruit_request) do |f| %>
-  <% if recruit_request.errors.any? %>
+<%= form_for(recruit) do |f| %>
+  <% if recruit.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(recruit_request.errors.count, "error") %> prohibited this recruit_request from being saved:</h2>
+      <h2><%= pluralize(recruit.errors.count, "error") %> prohibited this recruit from being saved:</h2>
 
       <ul>
-      <% recruit_request.errors.full_messages.each do |message| %>
+      <% recruit.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-  <%= f.fields_for recruit_request.team do |t| %>
+  <%= f.fields_for recruit.team do |t| %>
     <div class="field">
       <%= t.label :'団体名' %>
       <%= t.text_field :name %>
     </div>
     <div class="field">
-      <%= t.label :'password' %>
-      <%= t.text_field :password %>
+      <%= t.label :'password_digest' %>
+      <%= t.text_field :password_digest %>
     </div>
   <% end %>
   <div class="field">

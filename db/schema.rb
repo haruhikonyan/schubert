@@ -22,16 +22,16 @@ ActiveRecord::Schema.define(version: 20170311090855) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "recruit_request_instruments", force: :cascade do |t|
-    t.integer  "recruit_request_id", null: false
-    t.integer  "instrument_id",      null: false
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["instrument_id"], name: "index_recruit_request_instruments_on_instrument_id", using: :btree
-    t.index ["recruit_request_id"], name: "index_recruit_request_instruments_on_recruit_request_id", using: :btree
+  create_table "recruit_instruments", force: :cascade do |t|
+    t.integer  "recruit_id",    null: false
+    t.integer  "instrument_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["instrument_id"], name: "index_recruit_instruments_on_instrument_id", using: :btree
+    t.index ["recruit_id"], name: "index_recruit_instruments_on_recruit_id", using: :btree
   end
 
-  create_table "recruit_requests", force: :cascade do |t|
+  create_table "recruits", force: :cascade do |t|
     t.string   "practice_place"
     t.string   "practice_time"
     t.text     "free_text"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170311090855) do
     t.integer  "team_id",          null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["team_id"], name: "index_recruit_requests_on_team_id", using: :btree
+    t.index ["team_id"], name: "index_recruits_on_team_id", using: :btree
   end
 
   create_table "regions", force: :cascade do |t|
@@ -69,13 +69,13 @@ ActiveRecord::Schema.define(version: 20170311090855) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "password",   null: false
+    t.string   "name",            null: false
+    t.string   "password_digest", null: false
     t.string   "mail"
     t.string   "url"
     t.text     "free_text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "types", force: :cascade do |t|

@@ -10,6 +10,6 @@
 #
 
 class Instrument < ApplicationRecord
-    has_many :recruit_request_instruments
-    has_many :recruit_requests, :through => :recruit_request_instruments
+    has_many :recruit_instruments
+    has_many :recruits, :through => :recruit_instruments
 end

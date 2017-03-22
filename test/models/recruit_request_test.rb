@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: recruit_requests
+# Table name: recruits
 #
 #  id               :integer          not null, primary key
 #  practice_place   :string
@@ -15,7 +15,7 @@
 
 require 'test_helper'
 
-class RecruitRequestTest < ActiveSupport::TestCase
+class RecruitTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: recruit_requests
+# Table name: recruits
 #
 #  id               :integer          not null, primary key
 #  practice_place   :string
@@ -13,9 +13,9 @@
 #  updated_at       :datetime         not null
 #
 
-class RecruitRequest < ApplicationRecord
+class Recruit < ApplicationRecord
     belongs_to :team
 
-    has_many :recruit_request_instruments
-    has_many :instruments, :through => :recruit_request_instruments
+    has_many :recruit_instruments
+    has_many :instruments, :through => :recruit_instruments
 end
