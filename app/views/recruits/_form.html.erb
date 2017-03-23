@@ -19,6 +19,14 @@
       <%= t.label :'password' %>
       <%= t.password_field :password %>
     </div>
+    <div class="field">
+      <%= t.label :'連絡用メールアドレス' %>
+      <%= t.text_field :mail %>
+    </div>
+    <div class="field">
+      <%= t.label :'団体ホームメージ' %>
+      <%= t.text_field :url %>
+    </div>
   <% end %>
   <div class="field">
     <%= f.label :'練習場所' %>
