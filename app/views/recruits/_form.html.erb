@@ -43,5 +43,5 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-  <p><%= link_to 'Destroy', @recruit, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <p><%= link_to 'Destroy', @recruit, method: :delete, data: { confirm: 'Are you sure?' } if recruit.id %></p>
 <% end %>
