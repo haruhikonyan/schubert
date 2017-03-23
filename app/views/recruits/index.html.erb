@@ -31,7 +31,8 @@
         <td><%= recruit.instruments.pluck(:name) %></td>
         <td><%= recruit.post_period_from %></td>
         <td><%= recruit.post_period_to %></td>
-        <td><%= link_to 'Show', recruit %></td>
+        <td><button type="button" class="btn btn-default btn-sm"><%= link_to '詳細', recruit %></button></td>
+        
       </tr>
     <% end %>
   </tbody>
@@ -39,4 +40,4 @@
 
 <br>
 
-<%= link_to 'New Recruit', new_recruit_path %>
+<%= link_to '新しく団員募集をする', new_recruit_path %>
