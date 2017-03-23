@@ -19,6 +19,7 @@ class RecruitsController < ApplicationController
 
   # GET /recruits/1/edit
   def edit
+    redirect_to recruits_path, alert: 'パスワードが違います' unless @recruit.team.authenticate(params[:password])
   end
 
   # POST /recruits
@@ -67,10 +68,6 @@ class RecruitsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_recruit
       @recruit = Recruit.find(params[:id])
-    end
-
-    def set_team
-      @team = Team.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
