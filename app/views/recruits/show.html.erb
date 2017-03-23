@@ -1,3 +1,9 @@
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 <div class="container">
   <div class="row">
     <h1><%= @recruit.team.name %></h1>

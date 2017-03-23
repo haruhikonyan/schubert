@@ -19,7 +19,7 @@ class RecruitsController < ApplicationController
 
   # GET /recruits/1/edit
   def edit
-    redirect_to recruits_path, alert: 'パスワードが違います' unless @recruit.team.authenticate(params[:password])
+    redirect_to @recruit, alert: 'パスワードが違います' unless @recruit.team.authenticate(params[:password])
   end
 
   # POST /recruits
