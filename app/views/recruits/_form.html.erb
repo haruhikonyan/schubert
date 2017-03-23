@@ -21,26 +21,27 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :practice_place %>
+    <%= f.label :'練習場所' %>
     <%= f.text_field :practice_place %>
   </div>
 
   <div class="field">
-    <%= f.label :practice_time %>
+    <%= f.label :'練習時間' %>
     <%= f.text_field :practice_time %>
   </div>
 
   <div class="field">
-    <%= f.label :instrument_ids %><br/>
+    <%= f.label :'募集楽器' %><br/>
     <%= f.select :instrument_ids, Instrument.all.map {|i| [i.name, i.id]}, {}, multiple: true %>
   </div>
 
   <div class="field">
-    <%= f.label :free_text %>
-    <%= f.text_field :free_text %>
+    <%= f.label :'自由欄'%>
+    <%= f.text_area :free_text %>
   </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
+  <p><%= link_to 'Destroy', @recruit, method: :delete, data: { confirm: 'Are you sure?' } %></p>
 <% end %>

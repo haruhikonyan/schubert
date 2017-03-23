@@ -21,7 +21,6 @@
       <th>URL</th>
       <th>練習時間</th>
       <th>募集楽器</th>
-      <th>自由欄</th>
     </tr>
     <% @recruits.each do |recruit| %>
       <tr>
@@ -30,19 +29,9 @@
         <td><%= recruit.team.url %></td>
         <td><%= recruit.practice_time %></td>
         <td><%= recruit.instruments.pluck(:name) %></td>
-        <td><%= recruit.free_text %></td>
         <td><%= recruit.post_period_from %></td>
         <td><%= recruit.post_period_to %></td>
         <td><%= link_to 'Show', recruit %></td>
-        <td><%= link_to 'Destroy', recruit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= form_tag edit_recruit_path(recruit) do %>
-          <div class="field">
-            <%= label_tag 'password'%>
-            <%= password_field_tag 'password' %>
-          </div>
-          <%= submit_tag  'Edit' %>
-        <% end %></td>
-
       </tr>
     <% end %>
   </tbody>

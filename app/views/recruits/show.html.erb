@@ -1,4 +1,21 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_recruit_path(@recruit) %> |
-<%= link_to 'Back', recruits_path %>
+<div class="container">
+  <div class="row">
+    <h1><%= @recruit.team.name %></h1>
+    <div class="row">
+      <div class="col-sm-offset-1 col-md-11">
+        <p>練習場所:<%= @recruit.practice_place %></p>
+        <p>練習時間:<%= @recruit.practice_time %></p>
+        <p>連絡先:<%= @recruit.team.mail %></p>
+        <p>URL:<%= @recruit.team.url %></p>
+        <p><%= simple_format(@recruit.free_text) %></p>
+    </div>
+    <%= form_tag edit_recruit_path(@recruit) do %>
+      <div class="field">
+        <%= label_tag 'password'%>
+        <%= password_field_tag 'password' %>
+        <%= submit_tag  'Edit' %>
+      </div>
+    <% end %>
+    <p><%= link_to 'Back', recruits_path %></p>
+  </div>
+</div>
