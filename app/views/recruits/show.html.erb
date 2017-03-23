@@ -7,7 +7,7 @@
         <p>練習時間:<%= @recruit.practice_time %></p>
         <p>連絡先:<%= @recruit.team.mail %></p>
         <p>URL:<%= @recruit.team.url %></p>
-        <p>募集楽器:<%= recruit.instruments.pluck(:name) %></p>
+        <p>募集楽器:<%= @recruit.instruments.pluck(:name) %></p>
         <p><%= simple_format(@recruit.free_text) %></p>
     </div>
     <%= form_tag edit_recruit_path(@recruit) do %>
