@@ -4,9 +4,8 @@ class RecruitsController < ApplicationController
   # GET /recruits
   # GET /recruits.json
   def index
-    @recruits = Recruit.all
-    # TODO リファクタ 酔って実装してるのを言い訳にひどいコードな気がする
-    @recruits = Recruit.has_instrument_id(params[:instrument_id]) if params[:instrument_id] && params[:instrument_id] != ""
+    # 検索条件増えたらどうなるんだろうね。。。
+    @recruits = params[:instrument_id].present? ? Recruit.has_instrument_id(params[:instrument_id]) : Recruit.all
   end
 
   # GET /recruits/1
