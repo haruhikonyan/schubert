@@ -5,6 +5,8 @@ class RecruitsController < ApplicationController
   # GET /recruits.json
   def index
     @recruits = Recruit.all
+    # TODO リファクタ 酔って実装してるのを言い訳にひどいコードな気がする
+    @recruits = Recruit.has_instrument_id(params[:instrument_id]) if params[:instrument_id] && params[:instrument_id] != ""
   end
 
   # GET /recruits/1

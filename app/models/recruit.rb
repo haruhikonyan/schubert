@@ -14,8 +14,12 @@
 #
 
 class Recruit < ApplicationRecord
-    belongs_to :team
+  belongs_to :team
 
-    has_many :recruit_instruments
-    has_many :instruments, :through => :recruit_instruments
+  has_many :recruit_instruments
+  has_many :instruments, :through => :recruit_instruments
+
+  scope :has_instrument_id, -> instrument_id {
+    joins(:instruments).where('instruments.id = ?', instrument_id)
+  }
 end

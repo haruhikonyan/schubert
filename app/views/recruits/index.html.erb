@@ -1,7 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <h1>団員募集</h1>
-
+<div class="col-md-12">
+  <h3>団員募集検索</h3>
+  <%= form_tag({controller: "recruits"}, method: :get)do %>
+    <div class="form-group">
+      <label class="col-sm-2" for="service_vlan_resource_id">募集楽器</label>
+      <div class="col-sm-3">
+        <%=
+          select_tag 'instrument_id',
+                      options_from_collection_for_select(Instrument.all, :id, :to_s, params[:instrument_id]),
+                      class: 'form-control chosen-select',
+                      include_blank: true
+        %>
+      </div>
+      <%= submit_tag  '検索' %>
+    </div>
+  <% end %>
+</div>
 <table>
   <thead>
     <tr>

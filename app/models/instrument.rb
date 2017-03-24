@@ -10,6 +10,15 @@
 #
 
 class Instrument < ApplicationRecord
-    has_many :recruit_instruments
-    has_many :recruits, :through => :recruit_instruments
+  has_many :recruit_instruments
+  has_many :recruits, :through => :recruit_instruments
+
+  scope :id_is, -> id {
+    where(id: id)
+  }
+
+  def to_s
+    self.name
+  end
+  
 end
