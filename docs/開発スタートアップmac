@@ -1,0 +1,124 @@
+１、schubert は Rails を使った webサービスです
+※shubert 勝手につけたプロジェクト名　由来は聞いてください
+※Rails Ruby on Rails のことで Ruby を使ったフレームワーク
+※Ruby プログラミング言語
+
+２．１、schubert の ソースコードは github というサービス上にて管理されています
+※github wiki見て＞＜　ソースコード管理してくれるんです。
+→☆github にアカウント登録をしてその登録アカウント名を教えてください
+　ちなみに僕はこれ https://github.com/haruhikonyan/
+
+２．２、schubert は Heroku という webサービス？上で動きます(オプション)
+※Heroku アプリケーションを動かすためのインフラっぽいもの　使うのにアカウント登録が必要
+ 類似サービスにはアマゾンのAWSとかがある
+→☆Heroku にアカウント登録をしてその登録メールアドレスを教えてください　※ソースコードは github 移行により必ずしもアカウントは必要ありません。
+　サーバ触りたければ登録をお願いします。 
+
+３、schubert を開発するにはローカル環境に Rails をインストールする必要があります
+　　全員が同じ環境で開発するために Rails 及び Ruby のバージョンを揃える必要があります
+※バージョン 下記を目指す
+$ ruby -v
+ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-darwin15]
+$ rails -v
+Rails 5.0.2
+
+※$記号から始まるもの Macのターミナルでコマンドを打つということを覚えておけばおk(詳しくは Bash を調べる)
+※ローカル 開発にはローカル環境(自分のパソコン上)と開発環境(開発者が共有する本番に似た環境)、本番環境(実際に見えるページ)といって環境がいくつもある場合が多い
+ ローカルはもちろん自分のMac 開発本番環境は Heroku 上に作ることとしている
+
+４、Rails 及び Ruby のインストールをローカル環境にするには Homebrew というものが必要
+※Homebrew macOS 用パッケージマネージャー いろんなソフトを入れるのが楽になるよ！(詳しくは調べる)
+→実際のインストールは５の後
+
+５、Homebrow をインストールするには xcode が必要らしい(よくわかってない)
+→☆http://qiita.com/sxo/items/46293ebbc3601dabf4c0
+→☆上記サイトのようにターミナルにコマンドを打っていく($ の部分は含めずコピペ)(細かいバージョンは違くてもこれは気にしない)
+
+６、homeBrow がインストールできたら実際に Ruby と Rails をインストールしていく
+
+６．１、Ruby のインストール
+　　　　実はすでに Mac には Ruby はインストール済み
+　　　　しかし上記に挙げたバージョンとは違うはず
+　　　　下記コマンドで確認出来る
+$ ruby -v
+　　　　任意のバージョンをインストールするためには ruby-build と rbenv というものが必要
+※ruby-build + rbenv もともと Ruby があるのは Mac 自身が必要だからであり、むやみにバージョンアップは危険である
+ そこで、これらの仕組みを利用して古いバージョンを残したまま、任意のバージョンをインストールできるようにする
+→☆ちょっと何も考えずに下記打ってって　ごめん！
+
+$ cd ~/
+$ git clone git://github.com/sstephenson/rbenv.git rbenv
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+$ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+$ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+$ git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+$ rbenv install 2.4.0
+$ rbenv rehash
+$ rbenv global 2.4.0
+$ ruby -v
+→☆ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-darwin15] となってること確認
+
+http://qiita.com/isaoshimizu/items/07ddd1e25996e19d45bf
+このあたり参考
+
+git コマンドのところで無いよってエラー出たら
+$ brew install git
+
+６．２、Rails のインストール
+→☆下記コマンド実行
+$ gem install rails --no-ri --no-rdoc
+
+※ gem Ruby の拡張機能のようなもの Rails も Ruby を拡張して作ったフレームワークである？
+
+$ rails -v
+→☆Rails 5.0.2 と出ることを確認
+
+６．３、ついでに後で使う bundler インストール
+→☆下記コマンドで
+$ gem install bundler
+
+※bundler gem を一括でインストールしたりバージョン管理するもの Homebrow に似てる
+
+７、Heroku を使うためのコマンドのインストール（heroku に登録してサーバいじりたい人向け、飛ばしておk)
+→☆http://tweeeety.hateblo.jp/entry/2015/03/12/223932 ここの
+  4. Toolbeltをインストール ですね
+  ってかこのページわかりやすい。。。最初からこれでもよかったかもとか。。。
+→☆下記コマンドでログインしてみましょう
+$ heroku login
+
+８、実際に今動いてる schubert の ソースコード を git を使ってダウンロードする
+※git 上の方でも使っているが、バージョン管理ソフトのこと 分散型と呼ばれる仕組み
+
+→☆schubert の ソースコードを下記コマンドでダウンロード
+$ cd ~/
+$ git clone https://github.com/haruhikonyan/schubert.git schubert
+
+※ git clone するとそっくりそのまま持ってくることができる
+
+９、起動するために postgresql をインストールし、起動する
+※postgresql データベースのプロダクトであり、schubert は Heroku で推奨されているこいつを使うこととする
+→☆下記コマンドでインストールと起動
+$ brew install postgresql
+$ initdb /usr/local/var/postgres -E utf8
+$ pg_ctl -D /usr/local/var/postgres start
+$ psql -l
+エラー出ないこと(うまくいかなかったら下記試すとうまくいくかも？)
+
+ここから
+$ cd /usr/local/Cellar/postgresql
+$ curl -o fixBrewLionPostgresql.sh http://nextmarvel.net/blog/downloads/fixBrewLionPostgres.sh
+$ chmod 777 fixBrewLionPostgresql.sh
+$ ./fixBrewLionPostgresql.sh
+ここまで
+
+１０、schubert 起動
+→☆必要なgem を bundler 使ってインストールし、Rails コマンドで起動する
+$ bundle install
+$ rails s
+起動したっぽかったら下記URLにアクセス
+http://localhost:3000
+
+
+コード書くのにはVSCode使ってます
+git は sourceTree
+必要あれば入れましょう
