@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170325050054) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_instrument_categories_on_name", using: :btree
   end
 
   create_table "instruments", force: :cascade do |t|
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170325050054) do
     t.datetime "updated_at",             null: false
     t.integer  "instrument_category_id", null: false
     t.index ["instrument_category_id"], name: "index_instruments_on_instrument_category_id", using: :btree
+    t.index ["name"], name: "index_instruments_on_name", using: :btree
   end
 
   create_table "recruit_instruments", force: :cascade do |t|
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 20170325050054) do
     t.integer  "sort_number"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["name"], name: "index_regions_on_name", using: :btree
   end
 
   create_table "team_regions", force: :cascade do |t|
@@ -90,6 +93,7 @@ ActiveRecord::Schema.define(version: 20170325050054) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_types_on_name", using: :btree
   end
 
 end

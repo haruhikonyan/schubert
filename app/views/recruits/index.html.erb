@@ -38,9 +38,13 @@
         <td><%= link_to_if(recruit.team.url, 'URL飛びます', recruit.team.url){} %></td>
         <td><%= recruit.practice_time %></td>
         <td>
-          <% recruit.instruments.pluck(:name).each do |i| %>
-            <span class="badge"><%= i %></span>
-          <% end %>
+          募集楽器:<br>
+            <% recruit.instruments.map { |instrument| instrument.instrument_category }.uniq.each do |c| %>
+              &nbsp;&nbsp;<%= c %>:
+              <% recruit.instruments.each do |i| %>
+                <span class="badge"><%= i if i.instrument_category == c %></span>
+              <% end %><br>
+            <% end %>
         </td>
         <td><%= recruit.post_period_from %></td>
         <td><%= recruit.post_period_to %></td>
