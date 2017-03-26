@@ -1,59 +1,62 @@
 <p id="notice"><%= notice %></p>
-
-<h1>団員募集</h1>
-<div class="col-md-12">
-  <h3>団員募集検索</h3>
-  <%= form_tag({controller: "recruits"}, method: :get)do %>
-    <div class="form-group">
-      <label class="col-sm-2" for="service_vlan_resource_id">募集楽器</label>
-      <div class="col-sm-3">
-        <%=
-          select_tag 'instrument_id',
-                      options_from_collection_for_select(Instrument.all, :id, :to_s, params[:instrument_id]),
-                      class: 'form-control chosen-select',
-                      include_blank: true
-        %>
-      </div>
-      <%= submit_tag  '検索' %>
+<div class="container">
+  <div class="row">
+    <h1>団員募集</h1>
+    <div class="col-md-12">
+      <h3>団員募集検索</h3>
+      <%= form_tag({controller: "recruits"}, method: :get)do %>
+        <div class="form-group">
+          <label class="col-sm-2" for="service_vlan_resource_id">募集楽器</label>
+          <div class="col-sm-3">
+            <%=
+              select_tag 'instrument_id',
+                          options_from_collection_for_select(Instrument.all, :id, :to_s, params[:instrument_id]),
+                          class: 'form-control chosen-select',
+                          include_blank: true
+            %>
+          </div>
+          <%= submit_tag  '検索' %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th>団体名</th>
+          <th>団体ホームぺージ</th>
+          <th>練習時間</th>
+          <th>募集楽器</th>
+        </tr>
+        <% @recruits.each do |recruit| %>
+          <tr>
+            <td><%= recruit.team.name %></td>
+            <td><%= link_to_if(recruit.team.url.present?, 'URL飛びます', recruit.team.url){} %></td>
+            <td><%= recruit.practice_time %></td>
+            <td>
+              募集楽器:<br>
+                <% recruit.instruments.map { |instrument| instrument.instrument_category }.uniq.each do |c| %>
+                  &nbsp;&nbsp;<%= c %>:
+                  <% recruit.instruments.each do |i| %>
+                    <span class="badge"><%= i if i.instrument_category == c %></span>
+                  <% end %><br>
+                <% end %>
+            </td>
+            <td><%= recruit.post_period_from %></td>
+            <td><%= recruit.post_period_to %></td>
+            <td><%= link_to '詳細', recruit, class:'btn btn-default btn-sm' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @recruits %>
+    <br>
+
+    <%= link_to '新しく団員募集をする', new_recruit_path %>
+  </div>
 </div>
-<table class='table'>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <th class="text-center">団体名</th>
-      <th class="text-center">団体ホームぺージ</th>
-      <th class="text-center">練習時間</th>
-      <th class="text-center">募集楽器</th>
-    </tr>
-    <% @recruits.each do |recruit| %>
-      <tr>
-        <td><%= recruit.team.name %></td>
-        <td><%= link_to_if(recruit.team.url.present?, 'URL飛びます', recruit.team.url){} %></td>
-        <td><%= recruit.practice_time %></td>
-        <td>
-          募集楽器:<br>
-            <% recruit.instruments.map { |instrument| instrument.instrument_category }.uniq.each do |c| %>
-              &nbsp;&nbsp;<%= c %>:
-              <% recruit.instruments.each do |i| %>
-                <span class="badge"><%= i if i.instrument_category == c %></span>
-              <% end %><br>
-            <% end %>
-        </td>
-        <td><%= recruit.post_period_from %></td>
-        <td><%= recruit.post_period_to %></td>
-        <td><%= link_to '詳細', recruit, class:'btn btn-default btn-sm' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= paginate @recruits %>
-<br>
-
-<%= link_to '新しく団員募集をする', new_recruit_path %>
