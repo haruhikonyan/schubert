@@ -35,7 +35,7 @@
     <% @recruits.each do |recruit| %>
       <tr>
         <td><%= recruit.team.name %></td>
-        <td><%= link_to_if(recruit.team.url, 'URL飛びます', recruit.team.url){} %></td>
+        <td><%= link_to_if(recruit.team.url.present?, 'URL飛びます', recruit.team.url){} %></td>
         <td><%= recruit.practice_time %></td>
         <td>
           募集楽器:<br>
