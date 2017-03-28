@@ -13,39 +13,49 @@
   <%= f.fields_for recruit.team do |t| %>
     <div class="field">
       <%= t.label :'団体名' %>
-      <%= t.text_field :name %>
+      <%= t.text_field :name, class: 'form-control' %>
     </div>
     <div class="field">
       <%= t.label :'password' %>
-      <%= t.password_field :password %>
+      <%= t.password_field :password, class: 'form-control' %>
     </div>
     <div class="field">
       <%= t.label :'連絡用メールアドレス' %>
-      <%= t.text_field :mail %>
+      <%= t.text_field :mail, class: 'form-control' %>
     </div>
     <div class="field">
       <%= t.label :'団体ホームメージ' %>
-      <%= t.text_field :url %>
+      <%= t.text_field :url, class: 'form-control' %>
     </div>
   <% end %>
   <div class="field">
     <%= f.label :'練習場所' %>
-    <%= f.text_field :practice_place %>
+    <%= f.text_field :practice_place , class: 'form-control'%>
   </div>
 
   <div class="field">
     <%= f.label :'練習時間' %>
-    <%= f.text_field :practice_time %>
+    <%= f.text_field :practice_time, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :'募集楽器' %><br/>
-    <%= f.select :instrument_ids, Instrument.all.map {|i| [i.name, i.id]}, {}, multiple: true %>
+    <%= f.select :instrument_ids, Instrument.all.map {|i| [i.name, i.id]}, {}, multiple: true, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :'自由欄'%>
-    <%= f.text_area :free_text %>
+    <%= f.text_area :free_text, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :'掲載開始期間'%>
+    <%= f.text_field :published_to, class: 'form-control date-picker' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :'掲載終了期間'%>
+    <%= f.text_field :published_to, class: 'form-control date-picker' %>
   </div>
 
   <div class="actions">

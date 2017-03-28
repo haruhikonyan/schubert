@@ -4,8 +4,8 @@ class CreateRecruits < ActiveRecord::Migration[5.0]
       t.string :practice_place
       t.string :practice_time
       t.text :free_text
-      t.datetime :post_period_from
-      t.datetime :post_period_to
+      t.datetime :published_from, null: false
+      t.datetime :published_to, null: false
 
       t.belongs_to :team, null: false
 

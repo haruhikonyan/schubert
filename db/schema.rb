@@ -45,11 +45,11 @@ ActiveRecord::Schema.define(version: 20170325050054) do
     t.string   "practice_place"
     t.string   "practice_time"
     t.text     "free_text"
-    t.datetime "post_period_from"
-    t.datetime "post_period_to"
-    t.integer  "team_id",          null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "published_from", null: false
+    t.datetime "published_to",   null: false
+    t.integer  "team_id",        null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.index ["team_id"], name: "index_recruits_on_team_id", using: :btree
   end
 
