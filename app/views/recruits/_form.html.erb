@@ -1,3 +1,13 @@
+<%= javascript_tag do %>
+$(function(){
+  $('.date-picker').datetimepicker({
+    format: 'YYYY/MM/DD HH:mm',
+    inline: false,
+    sideBySide: true
+  });
+});
+<% end %>
+
 <%= form_for(recruit) do |f| %>
   <% if recruit.errors.any? %>
     <div id="error_explanation">
@@ -55,7 +65,7 @@
 
   <div class="field">
     <%= f.label :'掲載終了期間'%>
-    <%= f.text_field :published_to, class: 'form-control date-picker' %>
+    <%= f.text_field :published_from, class: 'form-control date-picker' %>
   </div>
 
   <div class="actions">
