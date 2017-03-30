@@ -34,38 +34,11 @@ $(function() {
         </div>
       <% end %>
     </div>
-    <table class="table table-responsive table-hover">
-      <thead>
-        <tr>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <th>団体名</th>
-          <th>団体ホームぺージ</th>
-          <th>練習時間</th>
-          <th>募集楽器</th>
-        </tr>
-        <% @recruits.each do |recruit| %>
-          <tr data-href=<%= recruit_path(recruit) %>>
-            <td><%= recruit.team.name %></td>
-            <td><%= link_to_if(recruit.team.url.present?, 'URL飛びます', recruit.team.url){} %></td>
-            <td><%= recruit.practice_time %></td>
-            <td>
-              募集楽器:<br>
-                <% recruit.instruments.map { |instrument| instrument.instrument_category }.uniq.each do |c| %>
-                  &nbsp;&nbsp;<%= c %>:
-                  <% recruit.instruments.each do |i| %>
-                    <span class="badge"><%= i if i.instrument_category == c %></span>
-                  <% end %><br>
-                <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <% @recruits.each do |recruit| %>
+      <%= link_to recruit do %>
+        <%= render partial: 'recruit', locals: { recruit: recruit } %>
+      <% end %>
+    <% end %>
     <%= paginate @recruits %>
     <br>
 
