@@ -57,21 +57,15 @@ $(function(){
     <%= f.label :'自由欄'%>
     <%= f.text_area :free_text, class: 'form-control' %>
   </div>
-  
-  <%= f.label :'掲載開始期間'%>
-  <div class='input-group date-picker'>
-    <%= f.text_field :published_to, class: 'form-control' %>
-    <span class="input-group-addon">
-      <span class="glyphicon glyphicon-calendar"></span>
-    </span>
+
+  <div class="field">
+    <%= f.label :'掲載開始期間'%>
+    <%= f.datetime_select :published_to, class: 'form-control date-picker', :use_month_numbers => true %>
   </div>
 
-  <%= f.label :'掲載終了期間'%>
-  <div class='input-group date-picker'>
-    <%= f.text_field :published_from, class: 'form-control' %>
-    <span class="input-group-addon">
-      <span class="glyphicon glyphicon-calendar"></span>
-    </span>
+  <div class="field">
+    <%= f.label :'掲載終了期間'%>
+    <%= f.datetime_select :published_from, class: 'form-control date-picker', :use_month_numbers => true %>
   </div>
 
   <div class="actions">
