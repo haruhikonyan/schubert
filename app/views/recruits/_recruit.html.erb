@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12 well">
-      <h4><%= recruit.team.name %></h4>
+    <div class="col-md-6 well">
+      <h3 class="time-name"><%= recruit.team.name %></h3>
+        <% recruit.team.types.each do |type| %>
+          <span class="badge"><%= type.name %></span>
+        <% end %>
       <div class="row">
         <div class="col-sm-offset-1 col-md-11">
           <p>練習場所:<%= recruit.practice_place %></p>

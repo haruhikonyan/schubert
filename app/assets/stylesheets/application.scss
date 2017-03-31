@@ -15,3 +15,9 @@
  */
 @import "bootstrap-sprockets";
 @import "honoka";
+
+// 団体名の隣に改行なしでtypeのバッチを表示させるため
+// しかし行間がなくなってタイトルっぽくなくなってる
+.time-name {
+  display: inline;
+}

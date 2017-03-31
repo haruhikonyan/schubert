@@ -30,6 +30,10 @@ $(function(){
       <%= t.password_field :password, class: 'form-control' %>
     </div>
     <div class="field">
+      <%= t.label :'団体種別' %><br/>
+      <%= t.select :type_ids, Type.all.map {|t| [t.name, t.id]}, {}, multiple: true, class: 'form-control' %>
+    </div>
+    <div class="field">
       <%= t.label :'連絡用メールアドレス' %>
       <%= t.text_field :mail, class: 'form-control' %>
     </div>
