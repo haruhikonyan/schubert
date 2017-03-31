@@ -34,6 +34,10 @@ $(function(){
       <%= t.select :type_ids, Type.all.map {|t| [t.name, t.id]}, {}, multiple: true, class: 'form-control' %>
     </div>
     <div class="field">
+      <%= t.label :'活動地域' %><br/>
+      <%= t.select :region_ids, Region.all.map {|r| [r.name, r.id]}, {}, multiple: true, class: 'form-control' %>
+    </div>
+    <div class="field">
       <%= t.label :'連絡用メールアドレス' %>
       <%= t.text_field :mail, class: 'form-control' %>
     </div>

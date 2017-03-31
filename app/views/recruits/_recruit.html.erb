@@ -10,8 +10,6 @@
           <p>練習場所:<%= recruit.practice_place %></p>
           <p>練習時間:<%= recruit.practice_time %></p>
           <p>連絡先:<%= recruit.team.mail %></p>
-          <!--リンクの中にリンクは無理？？-->
-          <!--<p>URL:<%= link_to recruit.team.url %></p>-->
           <p>募集楽器:<br>
             <% recruit.instruments.map { |instrument| instrument.instrument_category }.uniq.each do |c| %>
               &nbsp;&nbsp;<%= c %>:
