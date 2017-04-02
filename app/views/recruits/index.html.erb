@@ -35,7 +35,7 @@ $(function() {
       <% end %>
     </div>
     <% @recruits.each do |recruit| %>
-      <%= link_to recruit do %>
+      <%= link_to recruit, style: "text-decoration:none;" do %>
         <%= render partial: 'recruit', locals: { recruit: recruit } %>
       <% end %>
     <% end %>

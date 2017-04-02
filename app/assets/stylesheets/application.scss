@@ -15,10 +15,3 @@
  */
 @import "bootstrap-sprockets";
 @import "honoka";
-
-// 団体名の隣に改行なしでtypeのバッチを表示させるため
-// しかし行間がなくなってタイトルっぽくなくなったので line-height で調整
-.time-name {
-  display: inline;
-  line-height: 200%
-}

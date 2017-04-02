@@ -1,26 +1,24 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 well">
-      <h3 class="time-name"><%= recruit.team.name %></h3>
-        <% recruit.team.types.each do |type| %>
+<div class="col-md-12">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= recruit.team.name %>
+            <% recruit.team.types.each do |type| %>
           <span class="badge"><%= type.name %></span>
         <% end %>
-      <div class="row">
-        <div class="col-sm-offset-1 col-md-11">
-          <p>練習場所:<%= recruit.practice_place %></p>
-          <p>練習時間:<%= recruit.practice_time %></p>
-          <p>連絡先:<%= recruit.team.mail %></p>
-          <p>募集楽器:<br>
-            <% recruit.instruments.map { |instrument| instrument.instrument_category }.uniq.each do |c| %>
-              &nbsp;&nbsp;<%= c %>:
-              <% recruit.instruments.each do |i| %>
-                <span class="badge"><%= i if i.instrument_category == c %></span>
-              <% end %><br>
-            <% end %>
-          </p>
-          <!--<p><%= simple_format(recruit.free_text) %></p>-->
-        </div>
-      </div>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p>練習場所:<%= recruit.practice_place %></p>
+      <p>練習時間:<%= recruit.practice_time %></p>
+      <p>連絡先:<%= recruit.team.mail %></p>
+      <p>募集楽器:<br>
+        <% recruit.instruments.map { |instrument| instrument.instrument_category }.uniq.each do |c| %>
+          &nbsp;&nbsp;<%= c %>:
+          <% recruit.instruments.each do |i| %>
+            <span class="badge"><%= i if i.instrument_category == c %></span>
+          <% end %><br>
+        <% end %>
+      </p>
     </div>
   </div>
 </div>
