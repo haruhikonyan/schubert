@@ -63,3 +63,7 @@ ruby "2.4.0"
 gem 'honoka-rails'
 
 gem 'kaminari'
+
+gem "select2-rails"
+
+gem 'jquery-turbolinks'

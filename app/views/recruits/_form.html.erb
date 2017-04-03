@@ -1,11 +1,9 @@
+<!--汎用で使いたいから application.js に書くべきだと思うんだけど、そこに書くとたまに動かなくなる　一旦ここに-->
 <%= javascript_tag do %>
-$(function(){
-  $('.date-picker').datetimepicker({
-    format: 'YYYY/MM/DD HH:mm',
-    inline: false,
-    sideBySide: true
+  $(function(){
+    $(".select2").select2({
+    });
   });
-});
 <% end %>
 
 <%= form_for(recruit) do |f| %>
@@ -31,11 +29,11 @@ $(function(){
     </div>
     <div class="field">
       <%= t.label :'団体種別' %><br/>
-      <%= t.select :type_ids, Type.all.map {|t| [t.name, t.id]}, {}, multiple: true, class: 'form-control' %>
+      <%= t.select :type_ids, Type.all.map {|t| [t.name, t.id]}, {}, multiple: true, class: 'form-control select2' %>
     </div>
     <div class="field">
       <%= t.label :'活動地域' %><br/>
-      <%= t.select :region_ids, Region.all.map {|r| [r.name, r.id]}, {}, multiple: true, class: 'form-control' %>
+      <%= t.select :region_ids, Region.all.map {|r| [r.name, r.id]}, {}, multiple: true, class: 'form-control select2' %>
     </div>
     <div class="field">
       <%= t.label :'連絡用メールアドレス' %>
@@ -58,7 +56,7 @@ $(function(){
 
   <div class="field">
     <%= f.label :'募集楽器' %><br/>
-    <%= f.select :instrument_ids, Instrument.all.map {|i| [i.name, i.id]}, {}, multiple: true, class: 'form-control' %>
+    <%= f.select :instrument_ids, Instrument.all.map {|i| [i.name, i.id]}, {}, multiple: true, class: 'form-control select2' %>
   </div>
 
   <div class="field">
