@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170325050054) do
 
   create_table "instruments", force: :cascade do |t|
     t.string   "name"
+    t.string   "short_name",             null: false
     t.integer  "sort_number"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -42,11 +43,12 @@ ActiveRecord::Schema.define(version: 20170325050054) do
   end
 
   create_table "recruits", force: :cascade do |t|
+    t.string   "title",                                          null: false
     t.string   "practice_place"
     t.string   "practice_time"
     t.text     "free_text"
-    t.datetime "published_from", default: '2017-03-28 17:13:34', null: false
-    t.datetime "published_to",   default: '2017-03-28 17:13:34', null: false
+    t.datetime "published_from", default: '2017-04-03 12:54:53', null: false
+    t.datetime "published_to",   default: '2017-04-03 12:54:53', null: false
     t.integer  "team_id",                                        null: false
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false

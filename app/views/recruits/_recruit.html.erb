@@ -1,21 +1,22 @@
 <div class="col-md-12">
   <div class="panel panel-info">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= recruit.team.name %>
-            <% recruit.team.types.each do |type| %>
-          <span class="badge"><%= type.name %></span>
-        <% end %>
-      </h3>
+      <h3 class="panel-title"><%= recruit.title %></h3>
     </div>
     <div class="panel-body">
+      <p>
+        <% recruit.team.types.each do |type| %>
+          <span class="label label-info"><%= type %></span>
+        <% end %>
+      </p>
+      <h5><%= recruit.team.name %></h5>
       <p>練習場所:<%= recruit.practice_place %></p>
       <p>練習時間:<%= recruit.practice_time %></p>
-      <p>連絡先:<%= recruit.team.mail %></p>
       <p>募集楽器:<br>
         <% recruit.instruments.map { |instrument| instrument.instrument_category }.uniq.each do |c| %>
           &nbsp;&nbsp;<%= c %>:
           <% recruit.instruments.each do |i| %>
-            <span class="badge"><%= i if i.instrument_category == c %></span>
+            <span class="badge"><%= i.short_name if i.instrument_category == c %></span>
           <% end %><br>
         <% end %>
       </p>

@@ -22,5 +22,9 @@ class Instrument < ApplicationRecord
   def to_s
     self.name
   end
+
+  def to_name_and_short_name
+    "#{name}/#{short_name}"
+  end
   
 end
