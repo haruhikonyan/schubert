@@ -4,8 +4,10 @@ class RecruitsController < ApplicationController
   # GET /recruits
   # GET /recruits.json
   def index
-    # 検索条件増えたらどうなるんだろうね。。。 TODO 長くて汚いのを検索条件増やすのと一緒に直す
-    @recruits = params[:instrument_id].present? ? Recruit.has_instrument_id(params[:instrument_id]).page(params[:page]) : Recruit.page(params[:page])
+    query = Recruit.all
+    query = query.has_instrument_id(params[:instrument_id]) if params[:instrument_id].present?
+
+    @recruits = query.page(params[:page])
   end
 
   # GET /recruits/1
