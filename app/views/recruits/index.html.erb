@@ -4,9 +4,9 @@
     <div class="col-md-12">
       <h1>団員募集</h1>
         <div class="row">
-          <div class="col-md-9">
-            <h3>団員募集検索</h3>
-            <%= form_tag({controller: "recruits"}, method: :get)do %>
+          <%= form_tag({controller: "recruits"}, method: :get)do %>
+            <div class="col-md-9">
+              <h3>団員募集検索</h3>
               <div class="form-group">
                 <label class="col-sm-4" for="service_vlan_resource_id">団体種別</label>
                 <div class="col-sm-8">
@@ -29,12 +29,13 @@
                 <label class="col-sm-4" for="service_vlan_resource_id">フリーワード検索</label>
                 <div class="col-sm-8">
                   <!--TODO rails のヘルパー使うようにしたい、もちろん複数キーワードに対応も-->
-                  <input type="text" name="freeword" placeholder="複数キーワードには対応してません" class="form-control" />
+                  <%= text_field_tag :freeword, '', class: 'form-control' %>
+                  <!--<input type="text" name="freeword" placeholder="複数キーワードには対応してません" class="form-control" />-->
                 </div>
               </div>
-            <% end %>
-          </div>
-          <div class="col-sm-offset-1 col-md-2"><br><br><br><br><%= submit_tag  '検索', class: "btn btn-default btn-lg" %></div>
+            </div>
+            <div class="col-sm-offset-1 col-md-2"><br><br><br><br><%= submit_tag  '検索', class: "btn btn-default btn-lg" %></div>
+          <% end %>
             <div class="row">
               <div class="col-md-12">
                 <% @recruits.each do |recruit| %>
