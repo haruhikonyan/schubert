@@ -22,4 +22,8 @@ class Recruit < ApplicationRecord
   scope :has_instrument_id, -> instrument_id {
     joins(:instruments).where('instruments.id = ?', instrument_id)
   }
+
+  scope :has_type_id, -> type_id {
+    joins(team: :types).where('types.id = ?', type_id)
+  }
 end

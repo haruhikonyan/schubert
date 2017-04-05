@@ -9,8 +9,12 @@
 #
 
 class Type < ApplicationRecord
-    has_many :team_types
-    has_many :teams, :through => :team_types
+  has_many :team_types
+  has_many :teams, :through => :team_types
+
+  scope :id_is, -> id {
+    where(id: id)
+  }
 
   def to_s
     self.name

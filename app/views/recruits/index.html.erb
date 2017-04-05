@@ -6,6 +6,15 @@
       <h3>団員募集検索</h3>
       <%= form_tag({controller: "recruits"}, method: :get)do %>
         <div class="form-group">
+          <label class="col-sm-2" for="service_vlan_resource_id">団体種別</label>
+          <div class="col-sm-3">
+            <%=
+              select_tag 'type_id',
+                          options_from_collection_for_select(Type.all, :id, :to_s, params[:type_id]),
+                          class: 'form-control chosen-select',
+                          include_blank: true
+            %>
+          </div>
           <label class="col-sm-2" for="service_vlan_resource_id">募集楽器</label>
           <div class="col-sm-3">
             <%=
