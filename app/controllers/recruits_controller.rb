@@ -7,6 +7,7 @@ class RecruitsController < ApplicationController
     query = Recruit.all
     query = query.has_type_id(params[:type_id]) if params[:type_id].present?
     query = query.has_instrument_id(params[:instrument_id]) if params[:instrument_id].present?
+    query = query.search_freeword(params[:freeword]) if params[:freeword].present?
 
     @recruits = query.page(params[:page])
   end

@@ -1,41 +1,56 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
   <div class="row">
-    <h1>団員募集</h1>
     <div class="col-md-12">
-      <h3>団員募集検索</h3>
-      <%= form_tag({controller: "recruits"}, method: :get)do %>
-        <div class="form-group">
-          <label class="col-sm-2" for="service_vlan_resource_id">団体種別</label>
-          <div class="col-sm-3">
-            <%=
-              select_tag 'type_id',
-                          options_from_collection_for_select(Type.all, :id, :to_s, params[:type_id]),
-                          class: 'form-control chosen-select',
-                          include_blank: true
-            %>
+      <h1>団員募集</h1>
+        <div class="row">
+          <div class="col-md-9">
+            <h3>団員募集検索</h3>
+            <%= form_tag({controller: "recruits"}, method: :get)do %>
+              <div class="form-group">
+                <label class="col-sm-4" for="service_vlan_resource_id">団体種別</label>
+                <div class="col-sm-8">
+                  <%=
+                    select_tag 'type_id',
+                                options_from_collection_for_select(Type.all, :id, :to_s, params[:type_id]),
+                                class: 'form-control chosen-select',
+                                include_blank: true
+                  %>
+                </div>
+                <label class="col-sm-4" for="service_vlan_resource_id">募集楽器</label>
+                <div class="col-sm-8">
+                  <%=
+                    select_tag 'instrument_id',
+                                options_from_collection_for_select(Instrument.all, :id, :to_name_and_short_name, params[:instrument_id]),
+                                class: 'form-control chosen-select',
+                                include_blank: true
+                  %>
+                </div>
+                <label class="col-sm-4" for="service_vlan_resource_id">フリーワード検索</label>
+                <div class="col-sm-8">
+                  <!--TODO rails のヘルパー使うようにしたい、もちろん複数キーワードに対応も-->
+                  <input type="text" name="freeword" placeholder="複数キーワードには対応してません" class="form-control" />
+                </div>
+              </div>
+            <% end %>
           </div>
-          <label class="col-sm-2" for="service_vlan_resource_id">募集楽器</label>
-          <div class="col-sm-3">
-            <%=
-              select_tag 'instrument_id',
-                          options_from_collection_for_select(Instrument.all, :id, :to_name_and_short_name, params[:instrument_id]),
-                          class: 'form-control chosen-select',
-                          include_blank: true
-            %>
-          </div>
-          <%= submit_tag  '検索', class: "btn btn-default btn-sm" %>
-        </div>
-      <% end %>
-    </div>
-    <% @recruits.each do |recruit| %>
-      <%= link_to recruit, style: "text-decoration:none;" do %>
-        <%= render partial: 'recruit', locals: { recruit: recruit } %>
-      <% end %>
-    <% end %>
-    <%= paginate @recruits %>
-    <br>
+          <div class="col-sm-offset-1 col-md-2"><br><br><br><br><%= submit_tag  '検索', class: "btn btn-default btn-lg" %></div>
+            <div class="row">
+              <div class="col-md-12">
+                <% @recruits.each do |recruit| %>
+                  <%= link_to recruit, style: "text-decoration:none;" do %>
+                    <%= render partial: 'recruit', locals: { recruit: recruit } %>
+                  <% end %>
+                <% end %>
+                <%= paginate @recruits %>
+                <br>
 
-    <%= link_to '新しく団員募集をする', new_recruit_path %>
+                <%= link_to '新しく団員募集をする', new_recruit_path %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

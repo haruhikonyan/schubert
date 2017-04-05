@@ -26,4 +26,10 @@ class Recruit < ApplicationRecord
   scope :has_type_id, -> type_id {
     joins(team: :types).where('types.id = ?', type_id)
   }
+
+  # TODO 誰かどうにかして。。。　あと複数キーワード対応も
+  scope :search_freeword, -> word {
+    w = "%#{word}%"
+    joins(:team).where("(recruits.free_text LIKE ?) or (recruits.practice_place LIKE ?) or (recruits.practice_time LIKE ?) or (teams.name LIKE ?)", w, w, w, w)
+  }
 end
