@@ -29,8 +29,7 @@
                 <label class="col-sm-4" for="service_vlan_resource_id">フリーワード検索</label>
                 <div class="col-sm-8">
                   <!--TODO rails のヘルパー使うようにしたい、もちろん複数キーワードに対応も-->
-                  <%= text_field_tag :freeword, '', class: 'form-control' %>
-                  <!--<input type="text" name="freeword" placeholder="複数キーワードには対応してません" class="form-control" />-->
+                  <%= text_field_tag :freeword, '', class: 'form-control', placeholder: "複数キーワードには対応してません" %>
                 </div>
               </div>
             </div>
