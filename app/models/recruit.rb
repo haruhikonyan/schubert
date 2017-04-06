@@ -29,7 +29,7 @@ class Recruit < ApplicationRecord
   # もっとスマートにかける？
   scope :is_published, -> {
     now = DateTime.now
-    where("published_from <= ? and published_to >= ?", now, now)
+    where("published_from <= ?", now).where("published_to >= ?", now)
   }
 
   # TODO 誰かどうにかして。。。　あと複数キーワード対応も
