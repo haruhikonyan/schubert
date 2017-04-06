@@ -26,6 +26,11 @@ class Recruit < ApplicationRecord
   scope :has_type_id, -> type_id {
     joins(team: :types).where('types.id = ?', type_id)
   }
+  # もっとスマートにかける？
+  scope :is_published, -> {
+    now = DateTime.now
+    where("published_from <= ? and published_to >= ?", now, now)
+  }
 
   # TODO 誰かどうにかして。。。　あと複数キーワード対応も
   scope :search_freeword, -> word {

@@ -71,12 +71,12 @@
 
   <div class="field">
     <%= f.label :'掲載開始期間'%>
-    <%= f.datetime_select :published_to, class: 'form-control date-picker', :use_month_numbers => true %>
+    <%= f.datetime_select :published_from, class: 'form-control date-picker', :use_month_numbers => true %>
   </div>
 
   <div class="field">
     <%= f.label :'掲載終了期間'%>
-    <%= f.datetime_select :published_from, class: 'form-control date-picker', :use_month_numbers => true %>
+    <%= f.datetime_select :published_to, class: 'form-control date-picker', :use_month_numbers => true %>
   </div>
 
   <div class="actions">
