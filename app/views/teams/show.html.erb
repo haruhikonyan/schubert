@@ -1,4 +1,17 @@
-<p id="notice"><%= notice %></p>
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<%= @team.name %>
+
+    <%= form_tag edit_team_path(@team) do %>
+      <div class="field">
+        <%= label_tag 'password'%>
+        <%= password_field_tag 'password' %>
+        <%= submit_tag  'Edit' %>
+      </div>
+    <% end %>
+<%= link_to 'Back', teams_path %> |
+<%= link_to 'Destroy', @team, method: :delete, data: { confirm: 'Are you sure?' } %>

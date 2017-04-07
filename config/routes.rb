@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :types
   resources :teams
+  post 'teams/:id/edit', to: 'teams#edit'
   resources :recruits
   post 'recruits/:id/edit', to: 'recruits#edit'
 

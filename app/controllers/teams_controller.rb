@@ -19,6 +19,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
+    redirect_to @team, alert: 'パスワードが違います' unless @team.authenticate(params[:password])
   end
 
   # POST /teams

@@ -24,7 +24,6 @@ class RecruitsController < ApplicationController
 
   # GET /recruits/1/edit
   def edit
-    @is_team = true
     @team = @recruit.team
     redirect_to @recruit, alert: 'パスワードが違います' unless @recruit.team.authenticate(params[:password])
   end
