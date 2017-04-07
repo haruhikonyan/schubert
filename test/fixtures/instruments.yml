@@ -2,11 +2,13 @@
 #
 # Table name: instruments
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  sort_number :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                     :integer          not null, primary key
+#  name                   :string
+#  short_name             :string           not null
+#  sort_number            :integer
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  instrument_category_id :integer          not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

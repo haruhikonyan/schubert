@@ -2,14 +2,14 @@
 #
 # Table name: teams
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  password   :string           not null
-#  mail       :string
-#  url        :string
-#  free_text  :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  name            :string           not null
+#  password_digest :string           not null
+#  mail            :string
+#  url             :string
+#  free_text       :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 class Team < ApplicationRecord

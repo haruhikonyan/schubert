@@ -2,15 +2,16 @@
 #
 # Table name: recruits
 #
-#  id               :integer          not null, primary key
-#  practice_place   :string
-#  practice_time    :string
-#  free_text        :text
-#  post_period_from :datetime
-#  post_period_to   :datetime
-#  team_id          :integer          not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id             :integer          not null, primary key
+#  title          :string           not null
+#  practice_place :string
+#  practice_time  :string
+#  free_text      :text
+#  published_from :datetime         default("2017-04-03 12:54:53.022439"), not null
+#  published_to   :datetime         default("2017-04-03 12:54:53.022459"), not null
+#  team_id        :integer          not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 
 class Recruit < ApplicationRecord
