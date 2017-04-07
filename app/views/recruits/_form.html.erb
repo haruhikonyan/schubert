@@ -23,31 +23,33 @@
     <%= f.label :'募集タイトル' %>
     <%= f.text_field :title , class: 'form-control'%>
   </div>
-  <%= f.fields_for recruit.team do |t| %>
-    <div class="field">
-      <%= t.label :'団体名' %>
-      <%= t.text_field :name, class: 'form-control' %>
-    </div>
-    <div class="field">
-      <%= t.label :'password' %>
-      <%= t.password_field :password, class: 'form-control' %>
-    </div>
-    <div class="field">
-      <%= t.label :'団体種別' %><br/>
-      <%= t.select :type_ids, Type.all.map {|t| [t.name, t.id]}, {}, multiple: true, class: 'form-control select2' %>
-    </div>
-    <div class="field">
-      <%= t.label :'活動地域' %><br/>
-      <%= t.select :region_ids, Region.all.map {|r| [r.name, r.id]}, {}, multiple: true, class: 'form-control select2' %>
-    </div>
-    <div class="field">
-      <%= t.label :'連絡用メールアドレス' %>
-      <%= t.text_field :mail, class: 'form-control' %>
-    </div>
-    <div class="field">
-      <%= t.label :'団体ホームメージ' %>
-      <%= t.text_field :url, class: 'form-control' %>
-    </div>
+  <% unless @is_team %>
+    <%= f.fields_for recruit.team do |t| %>
+      <div class="field">
+        <%= t.label :'団体名' %>
+        <%= t.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= t.label :'password' %>
+        <%= t.password_field :password, class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= t.label :'団体種別' %><br/>
+        <%= t.select :type_ids, Type.all.map {|t| [t.name, t.id]}, {}, multiple: true, class: 'form-control select2' %>
+      </div>
+      <div class="field">
+        <%= t.label :'活動地域' %><br/>
+        <%= t.select :region_ids, Region.all.map {|r| [r.name, r.id]}, {}, multiple: true, class: 'form-control select2' %>
+      </div>
+      <div class="field">
+        <%= t.label :'連絡用メールアドレス' %>
+        <%= t.text_field :mail, class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= t.label :'団体ホームメージ' %>
+        <%= t.text_field :url, class: 'form-control' %>
+      </div>
+    <% end %>
   <% end %>
   <div class="field">
     <%= f.label :'練習場所' %>

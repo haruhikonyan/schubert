@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
     <h1>団員募集編集</h1>
+    <p><%= link_to '団体を編集する', @team %></p>
 
-    <%= render 'form', recruit: @recruit %>
+    <%= render 'form', recruit: @recruit%>
 
     <%= link_to 'Show', @recruit %> |
     <%= link_to 'Back', recruits_path %>
