@@ -1,0 +1,51 @@
+<!--汎用で使いたいから application.js に書くべきだと思うんだけど、そこに書くとたまに動かなくなる　一旦ここに-->
+<%= javascript_tag do %>
+  $(function(){
+    $(".select2").select2({
+    });
+  });
+<% end %>
+
+<%= form_for(team) do |f| %>
+  <% if team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recruit.errors.count, "error") %> prohibited this recruit from being saved:</h2>
+
+      <ul>
+      <% recruit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :'団体名' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :'password' %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :'団体種別' %><br/>
+    <%= f.select :type_ids, Type.all.map {|t| [t.name, t.id]}, {}, multiple: true, class: 'form-control select2' %>
+  </div>
+  <div class="field">
+    <%= f.label :'活動地域' %><br/>
+    <%= f.select :region_ids, Region.all.map {|r| [r.name, r.id]}, {}, multiple: true, class: 'form-control select2' %>
+  </div>
+  <div class="field">
+    <%= f.label :'連絡用メールアドレス' %>
+    <%= f.text_field :mail, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :'団体ホームメージ' %>
+    <%= f.text_field :url, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <p><%= link_to 'Destroy', @team, method: :delete, data: { confirm: 'Are you sure?' } if team.id %></p>
+<% end %>

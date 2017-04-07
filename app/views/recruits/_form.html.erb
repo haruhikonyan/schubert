@@ -23,7 +23,7 @@
     <%= f.label :'募集タイトル' %>
     <%= f.text_field :title , class: 'form-control'%>
   </div>
-  <% unless @is_team %>
+  <% unless @team %>
     <%= f.fields_for recruit.team do |t| %>
       <div class="field">
         <%= t.label :'団体名' %>
