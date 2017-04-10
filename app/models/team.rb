@@ -17,8 +17,6 @@ class Team < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  # SecurePassword有効
-  has_secure_password
 
   has_many :recruits
   has_many :team_types
@@ -26,4 +24,12 @@ class Team < ApplicationRecord
   has_many :team_regions
   has_many :regions, :through => :team_regions
 
+
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325050054) do
+ActiveRecord::Schema.define(version: 20170410153427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 20170325050054) do
     t.string   "practice_place"
     t.string   "practice_time"
     t.text     "free_text"
-    t.datetime "published_from", default: '2017-04-03 12:54:53', null: false
-    t.datetime "published_to",   default: '2017-04-03 12:54:53', null: false
+    t.datetime "published_from", default: '2017-04-10 15:54:51', null: false
+    t.datetime "published_to",   default: '2017-04-10 15:54:51', null: false
     t.integer  "team_id",                                        null: false
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
@@ -82,13 +82,22 @@ ActiveRecord::Schema.define(version: 20170325050054) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string   "name",            null: false
-    t.string   "password_digest", null: false
+    t.string   "name",                                null: false
     t.string   "mail"
     t.string   "url"
     t.text     "free_text"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.index ["reset_password_token"], name: "index_teams_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "types", force: :cascade do |t|
