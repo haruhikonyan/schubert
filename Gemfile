@@ -67,3 +67,6 @@ gem 'kaminari'
 gem "select2-rails"
 
 gem 'jquery-turbolinks'
+
+gem 'devise'
+gem 'cancancan'
