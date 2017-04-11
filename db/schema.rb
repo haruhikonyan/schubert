@@ -43,15 +43,15 @@ ActiveRecord::Schema.define(version: 20170325050054) do
   end
 
   create_table "recruits", force: :cascade do |t|
-    t.string   "title",                                          null: false
+    t.string   "title",          null: false
     t.string   "practice_place"
     t.string   "practice_time"
     t.text     "free_text"
-    t.datetime "published_from", default: '2017-04-03 12:54:53', null: false
-    t.datetime "published_to",   default: '2017-04-03 12:54:53', null: false
-    t.integer  "team_id",                                        null: false
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "published_from", null: false
+    t.datetime "published_to",   null: false
+    t.integer  "team_id",        null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.index ["team_id"], name: "index_recruits_on_team_id", using: :btree
   end
 

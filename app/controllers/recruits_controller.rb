@@ -19,7 +19,7 @@ class RecruitsController < ApplicationController
 
   # GET /recruits/new
   def new
-    @recruit = Recruit.new(team: Team.new)
+    @recruit = Recruit.new(team: Team.new, published_from: DateTime.now, published_to: DateTime.now)
   end
 
   # GET /recruits/1/edit
