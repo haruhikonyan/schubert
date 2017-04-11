@@ -19,6 +19,10 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
+    if session[:from_recruit]
+      params[:password] = session[:password]
+      reset_session
+    end
     redirect_to @team, alert: 'パスワードが違います' unless @team.authenticate(params[:password])
   end
 

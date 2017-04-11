@@ -25,6 +25,9 @@ class RecruitsController < ApplicationController
   # GET /recruits/1/edit
   def edit
     @team = @recruit.team
+    # TODO 使うのはこの画面から team を編集に遷移するときだけだから、リンクを押下したときだけに格納にしたい
+    session[:password] = params[:password]
+    session[:from_recruit] = true
     redirect_to @recruit, alert: 'パスワードが違います' unless @recruit.team.authenticate(params[:password])
   end
 
