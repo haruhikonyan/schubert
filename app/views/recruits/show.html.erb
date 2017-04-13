@@ -15,9 +15,9 @@
           この募集は募集期間を過ぎています
         </div>
       <% end %>
-      <h1 class="time-name"><%= @recruit.team.name %></h1>
+      <h1><%= @recruit.team.name %></h1>
       <% @recruit.team.types.each do |type| %>
-        <span class="badge"><%= type.name %></span>
+        <span class="badge"><%= type %></span>
       <% end %>
       <div class="row">
         <div class="col-sm-offset-1 col-md-11">

@@ -43,6 +43,10 @@
     <%= f.label :'団体ホームメージ' %>
     <%= f.text_field :url, class: 'form-control' %>
   </div>
+  <div class="field">
+    <%= f.label :'自由欄'%>
+    <%= f.text_area :free_text, class: 'form-control' %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>
