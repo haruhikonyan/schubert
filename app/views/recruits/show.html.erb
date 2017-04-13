@@ -10,12 +10,12 @@
         この募集は掲載期間前です
       </div>
     <% else %>
-    <% if @recruit.published_to < DateTime.now %>
-      <div class="alert alert-danger">
-        この募集は募集期間を過ぎています
-      </div>
-    <% end %>
-    <h1 class="time-name"><%= @recruit.team.name %></h1>
+      <% if @recruit.published_to < DateTime.now %>
+        <div class="alert alert-danger">
+          この募集は募集期間を過ぎています
+        </div>
+      <% end %>
+      <h1 class="time-name"><%= @recruit.team.name %></h1>
       <% @recruit.team.types.each do |type| %>
         <span class="badge"><%= type.name %></span>
       <% end %>
@@ -34,6 +34,7 @@
             <% end %>
           </p>
           <p><%= simple_format(@recruit.free_text) %></p>
+        </div>
       </div>
     <% end %>
     <%= form_tag edit_recruit_path(@recruit) do %>
