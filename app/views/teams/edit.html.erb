@@ -2,5 +2,5 @@
 
 <%= render 'form', team: @team %>
 
-<%= link_to 'Show', @team %> |
+<p><%= button_to '団体を削除する', @team, method: :delete, data: { confirm: 'Are you sure?' } %></p>
 <%= link_to 'Back', teams_path %>
