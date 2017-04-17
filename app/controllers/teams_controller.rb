@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :reset_password_session, only: [:show, :index]
 
   # GET /teams
   # GET /teams.json
@@ -19,11 +20,8 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
-    if session[:from_recruit]
-      params[:password] = session[:password]
-      reset_session
-    end
-    redirect_to @team, alert: 'パスワードが違います' unless @team.authenticate(params[:password])
+    session[:password] = params[:password]
+    redirect_to @team, alert: 'パスワードが違います' unless @team.authenticate(session[:password])
   end
 
   # POST /teams
@@ -59,6 +57,7 @@ class TeamsController < ApplicationController
   # DELETE /teams/1
   # DELETE /teams/1.json
   def destroy
+    return redirect_to @team, alert: 'パスワードが違います' unless @team.authenticate(session[:password])
     @team.destroy
     respond_to do |format|
       format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
@@ -75,5 +74,9 @@ class TeamsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
       params[:team].try!(:permit!)
+    end
+
+    def reset_password_session
+      session[:password] = nil if session[:password]
     end
 end

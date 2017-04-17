@@ -1,5 +1,6 @@
 class RecruitsController < ApplicationController
   before_action :set_recruit, only: [:show, :edit, :update, :destroy]
+  before_action :reset_password_session, only: [:show, :index]
 
   # GET /recruits
   # GET /recruits.json
@@ -25,10 +26,8 @@ class RecruitsController < ApplicationController
   # GET /recruits/1/edit
   def edit
     @team = @recruit.team
-    # TODO 使うのはこの画面から team を編集に遷移するときだけだから、リンクを押下したときだけに格納にしたい
     session[:password] = params[:password]
-    session[:from_recruit] = true
-    redirect_to @recruit, alert: 'パスワードが違います' unless @recruit.team.authenticate(params[:password])
+    redirect_to @recruit, alert: 'パスワードが違います' unless @recruit.team.authenticate(session[:password])
   end
 
   # POST /recruits
@@ -66,6 +65,7 @@ class RecruitsController < ApplicationController
   # DELETE /recruits/1
   # DELETE /recruits/1.json
   def destroy
+    return redirect_to @recruit, alert: 'パスワードが違います' unless @recruit.team.authenticate(session[:password])
     @recruit.destroy
     respond_to do |format|
       format.html { redirect_to recruits_url, notice: 'Recruit was successfully destroyed.' }
@@ -88,5 +88,9 @@ class RecruitsController < ApplicationController
 
     def team_params
       params[:recruit][:team].try!(:permit!)
+    end
+
+    def reset_password_session
+      session[:password] = nil if session[:password]
     end
 end
