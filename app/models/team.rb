@@ -22,4 +22,7 @@ class Team < ApplicationRecord
   has_many :team_regions
   has_many :regions, :through => :team_regions
 
+  scope :is_public, -> {
+    where(is_public: true)
+  }
 end

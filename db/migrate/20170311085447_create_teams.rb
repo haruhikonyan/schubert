@@ -6,6 +6,7 @@ class CreateTeams < ActiveRecord::Migration[5.0]
       t.string :mail
       t.string :url
       t.text :free_text
+      t.boolean :is_public, default: false
       t.timestamps
     end
   end

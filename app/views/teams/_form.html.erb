@@ -48,6 +48,11 @@
     <%= f.text_area :free_text, class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= f.label :'団体一覧掲載 ※チェックを付けると団体一覧に掲載されます'%>
+    <%= f.check_box :is_public, class: 'form-control' %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

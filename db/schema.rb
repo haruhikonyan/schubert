@@ -82,13 +82,14 @@ ActiveRecord::Schema.define(version: 20170325050054) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string   "name",            null: false
-    t.string   "password_digest", null: false
+    t.string   "name",                            null: false
+    t.string   "password_digest",                 null: false
     t.string   "mail"
     t.string   "url"
     t.text     "free_text"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.boolean  "is_public",       default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "types", force: :cascade do |t|
