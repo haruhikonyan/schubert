@@ -7,23 +7,27 @@
 <div class="container">
   <div class="row">
 
+    <% if @team.is_public %>
+      <h1><%= @team.name %></h1>
+      <p><% @team.types.each do |type| %>
+        <span class="badge"><%= type %></span>
+      <% end %></p>
+      <p><% @team.regions.each do |region| %>
+        <span class="badge"><%= region %></span>
+      <% end %></p>
 
-    <h1><%= @team.name %></h1>
-    <p><% @team.types.each do |type| %>
-      <span class="badge"><%= type %></span>
-    <% end %></p>
-    <p><% @team.regions.each do |region| %>
-      <span class="badge"><%= region %></span>
-    <% end %></p>
-
-    <div class="row">
-      <div class="col-sm-offset-1 col-md-11">
-        <p>連絡先:<%= @team.mail %></p>
-        <p>URL:<%= link_to @team.url %></p>
-        <p><%= simple_format(@team.free_text) %></p>
+      <div class="row">
+        <div class="col-sm-offset-1 col-md-11">
+          <p>連絡先:<%= @team.mail %></p>
+          <p>URL:<%= link_to @team.url %></p>
+          <p><%= simple_format(@team.free_text) %></p>
+        </div>
       </div>
-    </div>
-
+    <% else %>
+      <div class="alert alert-danger">
+        この団体は非公開です
+      </div>
+    <% end %>
     <%= form_tag edit_team_path(@team) do %>
       <div class="field">
         <%= label_tag 'password'%>
