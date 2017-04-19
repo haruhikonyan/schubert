@@ -52,7 +52,7 @@ class RecruitsController < ApplicationController
   # PATCH/PUT /recruits/1.json
   def update
     respond_to do |format|
-      if @recruit.team.update(team_params) && @recruit.update(recruit_params)
+      if @recruit.update(recruit_params)
         format.html { redirect_to @recruit, notice: 'Recruit was successfully updated.' }
         format.json { render :show, status: :ok, location: @recruit }
       else
