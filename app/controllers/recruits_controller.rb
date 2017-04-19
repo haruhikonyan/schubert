@@ -23,7 +23,7 @@ class RecruitsController < ApplicationController
     @recruit = Recruit.new(team: Team.new, published_from: DateTime.now, published_to: DateTime.now)
   end
 
-  # GET /recruits/1/edit
+  # POST /recruits/1/edit
   def edit
     @team = @recruit.team
     session[:password] = params[:password]

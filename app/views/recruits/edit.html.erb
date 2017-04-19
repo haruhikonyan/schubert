@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <h1>団員募集編集</h1>
-    <p><%= link_to '団体を編集する', edit_team_path(@team)%></p>
+    <p><%= link_to '団体を編集する', edit_team_path(@team), method: :post %></p>
 
     <%= render 'form', recruit: @recruit%>
 

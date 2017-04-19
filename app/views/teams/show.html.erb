@@ -28,11 +28,11 @@
         この団体は非公開です
       </div>
     <% end %>
-    <%= form_tag edit_team_path(@team) do %>
+    <%= form_tag admin_team_path(@team) do %>
       <div class="field">
         <%= label_tag 'password'%>
         <%= password_field_tag 'password' %>
-        <%= submit_tag  'Edit' %>
+        <%= submit_tag  '団員管理画面へ' %>
       </div>
     <% end %>
     <%= link_to 'Back', teams_path %>

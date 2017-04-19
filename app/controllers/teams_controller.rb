@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:show, :edit, :update, :destroy, :admin]
   before_action :reset_password_session, only: [:show, :index]
 
   # GET /teams
@@ -18,9 +18,8 @@ class TeamsController < ApplicationController
     @team = Team.new
   end
 
-  # GET /teams/1/edit
+  # POST /teams/1/edit
   def edit
-    session[:password] = params[:password]
     redirect_to @team, alert: 'パスワードが違います' unless @team.authenticate(session[:password])
   end
 
@@ -63,6 +62,12 @@ class TeamsController < ApplicationController
       format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # POST /teams/1/admin
+  def admin
+    session[:password] = params[:password]
+    redirect_to @team, alert: 'パスワードが違います' unless @team.authenticate(session[:password])
   end
 
   private
