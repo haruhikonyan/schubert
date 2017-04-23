@@ -1,6 +1,6 @@
 <h1>団体管理者画面</h1>
 
-
+<p><%= link_to '新しく団員募集を出す', new_recruit_path(team_id: @team.id) %></p>
 <p><%= button_to '団体を編集する', edit_team_path(@team), method: :post %></p>
 <p><%= button_to '団体を削除する', @team, method: :delete, data: { confirm: 'Are you sure?' } %></p>
 <%= link_to 'Back', teams_path %>

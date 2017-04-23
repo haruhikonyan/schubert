@@ -5,7 +5,6 @@
     });
   });
 <% end %>
-
 <%= form_for(recruit) do |f| %>
   <% if recruit.errors.any? %>
     <div id="error_explanation">
@@ -23,7 +22,9 @@
     <%= f.label :'募集タイトル' %>
     <%= f.text_field :title , class: 'form-control'%>
   </div>
-  <% unless @team %>
+  <% unless recruit.team %>
+    <% recruit.team = Team.new %>
+    <input type="hidden" name="new_team" value="12345">
     <%= f.fields_for recruit.team do |t| %>
       <div class="field">
         <%= t.label :'団体名' %>

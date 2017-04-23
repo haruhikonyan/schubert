@@ -20,7 +20,13 @@ class RecruitsController < ApplicationController
 
   # GET /recruits/new
   def new
-    @recruit = Recruit.new(team: Team.new, published_from: DateTime.now, published_to: DateTime.now)
+    if params[:team_id]
+      session[:team_id] = params[:team_id]
+      @team = Team.find(params[:team_id].to_i)
+      @recruit = Recruit.new(team: @team, published_from: DateTime.now, published_to: DateTime.now)
+    else
+      @recruit = Recruit.new(published_from: DateTime.now, published_to: DateTime.now)
+    end
   end
 
   # POST /recruits/1/edit
@@ -33,17 +39,32 @@ class RecruitsController < ApplicationController
   # POST /recruits
   # POST /recruits.json
   def create
-    team = Team.new(team_params)
-    @recruit = Recruit.new(recruit_params)
-    @recruit.team = team
+    if params[:new_team]
+      team = Team.new(team_params)
+      @recruit = Recruit.new(recruit_params)
+      @recruit.team = team
 
-    respond_to do |format|
-      if @recruit.save
-        format.html { redirect_to @recruit, notice: 'Recruit was successfully created.' }
-        format.json { render :show, status: :created, location: @recruit }
-      else
-        format.html { render :new }
-        format.json { render json: @recruit.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @recruit.save
+          format.html { redirect_to @recruit, notice: 'Recruit was successfully created.' }
+          format.json { render :show, status: :created, location: @recruit }
+        else
+          format.html { render :new }
+          format.json { render json: @recruit.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      @recruit = Recruit.new(recruit_params2)
+      @recruit.team = Team.find(session[:team_id].to_i)
+      session[:team_id] = nil
+      respond_to do |format|
+        if @recruit.save
+          format.html { redirect_to @recruit, notice: 'Recruit was successfully created.' }
+          format.json { render :show, status: :created, location: @recruit }
+        else
+          format.html { render :new }
+          format.json { render json: @recruit.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -83,6 +104,10 @@ class RecruitsController < ApplicationController
     def recruit_params
       # TODO view からくる params が微妙な入れ子になってて要修正？
       # <ActionController::Parameters {"team"=>{"name"=>"ddd", "password"=>"ppp"}, "practice_place"=>"aaa", "practoce_time"=>"ttt", "free_text"=>"fff"} permitted: false>
+      params[:recruit].except(:team).try!(:permit!)
+    end
+
+    def recruit_params2
       params[:recruit].except(:team).try!(:permit!)
     end
 
