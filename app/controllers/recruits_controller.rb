@@ -21,7 +21,8 @@ class RecruitsController < ApplicationController
 
   # GET /recruits/new
   def new
-    @recruit = Recruit.new(published_from: DateTime.now, published_to: DateTime.now)
+    @team ? team = @team : team = Team.new
+    @recruit = Recruit.new(team: team, published_from: DateTime.now, published_to: DateTime.now)
   end
 
   # POST /recruits/1/edit
@@ -33,9 +34,8 @@ class RecruitsController < ApplicationController
   # POST /recruits
   # POST /recruits.json
   def create
-    @team = Team.new(team_params) if @team
     @recruit = Recruit.new(recruit_params)
-    @recruit.team = @team
+    @recruit.team = Team.new(team_params) unless @recruit.team
 
     respond_to do |format|
       if @recruit.save
@@ -80,7 +80,7 @@ class RecruitsController < ApplicationController
     end
 
     def set_team
-      params[:team_id] ? @team = Team.find(params[:team_id]) : @team = @recruit&.team
+      params[:team_id] ? @team = Team.find(params[:team_id]) : @recruit ? @team = @recruit.team : Team.new
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
