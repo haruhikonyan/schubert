@@ -1,5 +1,6 @@
 class RecruitsController < ApplicationController
   before_action :set_recruit, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:new, :edit]
   before_action :reset_password_session, only: [:show, :index]
 
   # GET /recruits
@@ -20,12 +21,12 @@ class RecruitsController < ApplicationController
 
   # GET /recruits/new
   def new
-    @recruit = Recruit.new(team: Team.new, published_from: DateTime.now, published_to: DateTime.now)
+    @team ? team = @team : team = Team.new
+    @recruit = Recruit.new(team: team, published_from: DateTime.now, published_to: DateTime.now)
   end
 
   # POST /recruits/1/edit
   def edit
-    @team = @recruit.team
     session[:password] = params[:password]
     redirect_to @recruit, alert: 'パスワードが違います' unless @recruit.team.authenticate(session[:password])
   end
@@ -33,9 +34,8 @@ class RecruitsController < ApplicationController
   # POST /recruits
   # POST /recruits.json
   def create
-    team = Team.new(team_params)
     @recruit = Recruit.new(recruit_params)
-    @recruit.team = team
+    @recruit.team = Team.new(team_params) unless @recruit.team
 
     respond_to do |format|
       if @recruit.save
@@ -77,6 +77,10 @@ class RecruitsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_recruit
       @recruit = Recruit.find(params[:id])
+    end
+
+    def set_team
+      params[:team_id] ? @team = Team.find(params[:team_id]) : @recruit ? @team = @recruit.team : Team.new
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
