@@ -7,7 +7,7 @@ class CreateConcertInformations < ActiveRecord::Migration[5.0]
       t.datetime :place_opening_time
       t.string :place
       t.string :place_url
-      t.string :director
+      t.string :conductor
       t.integer :price
       t.string :ticket_type
       t.text :introduction

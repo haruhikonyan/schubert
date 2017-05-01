@@ -9,7 +9,7 @@
 #  place_opening_time                :datetime
 #  place                             :string
 #  place_url                         :string
-#  director                          :string
+#  conductor                         :string
 #  price                             :integer
 #  ticket_type                       :string
 #  introduction                      :text
