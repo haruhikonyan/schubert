@@ -11,7 +11,7 @@ class CreateConcertInformations < ActiveRecord::Migration[5.0]
       t.integer :price
       t.string :ticket_type
       t.text :introduction
-      t.integer :team_id
+      t.belongs_to :team
       t.timestamps
     end
   end
