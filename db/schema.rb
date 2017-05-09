@@ -34,11 +34,11 @@ ActiveRecord::Schema.define(version: 20170509013518) do
   end
 
   create_table "questionnaire_choices_options", force: :cascade do |t|
-    t.string   "option_name",      null: false
-    t.integer  "questionnaire_id", null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["questionnaire_id"], name: "index_questionnaire_choices_options_on_questionnaire_id", using: :btree
+    t.string   "option_name",           null: false
+    t.integer  "questionnaire_item_id", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["questionnaire_item_id"], name: "index_questionnaire_choices_options_on_questionnaire_item_id", using: :btree
   end
 
   create_table "questionnaire_items", force: :cascade do |t|

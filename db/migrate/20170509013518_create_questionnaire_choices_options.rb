@@ -3,7 +3,7 @@ class CreateQuestionnaireChoicesOptions < ActiveRecord::Migration[5.0]
     create_table :questionnaire_choices_options do |t|
       t.string :option_name, null: false
 
-      t.belongs_to :questionnaire, null: false
+      t.belongs_to :questionnaire_item, null: false
       t.timestamps
     end
   end
