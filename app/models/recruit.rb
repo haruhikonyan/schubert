@@ -7,8 +7,8 @@
 #  practice_place :string
 #  practice_time  :string
 #  free_text      :text
-#  published_from :datetime         default("2017-04-03 12:54:53.022439"), not null
-#  published_to   :datetime         default("2017-04-03 12:54:53.022459"), not null
+#  published_from :datetime         not null
+#  published_to   :datetime         not null
 #  team_id        :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null

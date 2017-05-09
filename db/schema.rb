@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325050054) do
+ActiveRecord::Schema.define(version: 20170509013518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,31 @@ ActiveRecord::Schema.define(version: 20170325050054) do
     t.integer  "instrument_category_id", null: false
     t.index ["instrument_category_id"], name: "index_instruments_on_instrument_category_id", using: :btree
     t.index ["name"], name: "index_instruments_on_name", using: :btree
+  end
+
+  create_table "questionnaire_choices_options", force: :cascade do |t|
+    t.string   "option_name",      null: false
+    t.integer  "questionnaire_id", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["questionnaire_id"], name: "index_questionnaire_choices_options_on_questionnaire_id", using: :btree
+  end
+
+  create_table "questionnaire_items", force: :cascade do |t|
+    t.string   "title",                              null: false
+    t.boolean  "is_exist_free_text", default: false, null: false
+    t.boolean  "is_multiple",        default: true,  null: false
+    t.integer  "questionnaire_id",                   null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["questionnaire_id"], name: "index_questionnaire_items_on_questionnaire_id", using: :btree
+  end
+
+  create_table "questionnaires", force: :cascade do |t|
+    t.string   "title",       null: false
+    t.text     "discription"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "recruit_instruments", force: :cascade do |t|
