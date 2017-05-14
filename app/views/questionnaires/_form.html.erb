@@ -11,6 +11,20 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :'アンケートタイトル' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <!--パスワードっているかな？？
+  <div class="field">
+    <%= f.label :'password' %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>-->
+  <div class="field">
+    <%= f.label :'説明(タイトルの下に表示されます)'%>
+    <%= f.text_area :discription, class: 'form-control' %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
