@@ -25,9 +25,15 @@ class QuestionnairesController < ApplicationController
   # POST /questionnaires.json
   def create
     @questionnaire = Questionnaire.new(questionnaire_params)
+    # 本当は複数のitemおよびchoicesが飛んでくるからどう処理しようものか。。。
+    questionnaire_item = QuestionnaireItem.new(questionnaire_item_params)
+    questionnaire_choices_option = QuestionnaireChoicesOption.new(questionnaire_choices_option_params)
+    questionnaire_choices_option.questionnaire_item = questionnaire_item
+    questionnaire_item.questionnaire = @questionnaire
 
     respond_to do |format|
-      if @questionnaire.save
+      # 個別に一つ一つ保存していくのではなく一気に保存したい
+      if questionnaire_choices_option.save && questionnaire_item.save && @questionnaire.save
         format.html { redirect_to @questionnaire, notice: 'Questionnaire was successfully created.' }
         format.json { render :show, status: :created, location: @questionnaire }
       else
@@ -69,6 +75,14 @@ class QuestionnairesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def questionnaire_params
-      params.fetch(:questionnaire, {})
+      params[:questionnaire].try!(:permit!)
+    end
+
+    def questionnaire_item_params
+      params[:questionnaire_item].try!(:permit!)
+    end
+
+    def questionnaire_choices_option_params
+      params[:questionnaire_choices_option].try!(:permit!)
     end
 end
