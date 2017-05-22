@@ -10,5 +10,7 @@
 #
 
 class QuestionnaireChoicesOption < ApplicationRecord
+  has_many :answer_choices_options
+  has_many :questionnaire_item_answers, :through => :answer_choices_options
   belongs_to :questionnaire_item
 end

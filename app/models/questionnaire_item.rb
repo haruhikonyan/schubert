@@ -15,4 +15,5 @@ class QuestionnaireItem < ApplicationRecord
   belongs_to :questionnaire
 
   has_many :questionnaire_choices_options
+  has_many :questionnaire_item_answers
 end

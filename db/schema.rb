@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170509013518) do
+ActiveRecord::Schema.define(version: 20170522131000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answer_choices_options", force: :cascade do |t|
+    t.integer  "questionnaire_item_answer_id",    null: false
+    t.integer  "questionnaire_choices_option_id", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["questionnaire_choices_option_id"], name: "index_answer_choices_options_on_questionnaire_choices_option_id", using: :btree
+    t.index ["questionnaire_item_answer_id"], name: "index_answer_choices_options_on_questionnaire_item_answer_id", using: :btree
+  end
 
   create_table "instrument_categories", force: :cascade do |t|
     t.string   "name"
@@ -33,12 +42,29 @@ ActiveRecord::Schema.define(version: 20170509013518) do
     t.index ["name"], name: "index_instruments_on_name", using: :btree
   end
 
+  create_table "questionnaire_answers", force: :cascade do |t|
+    t.integer  "questionnaire_id", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["questionnaire_id"], name: "index_questionnaire_answers_on_questionnaire_id", using: :btree
+  end
+
   create_table "questionnaire_choices_options", force: :cascade do |t|
     t.string   "option_name",           null: false
     t.integer  "questionnaire_item_id", null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.index ["questionnaire_item_id"], name: "index_questionnaire_choices_options_on_questionnaire_item_id", using: :btree
+  end
+
+  create_table "questionnaire_item_answers", force: :cascade do |t|
+    t.text     "free_text_answer"
+    t.integer  "questionnaire_item_id",   null: false
+    t.integer  "questionnaire_answer_id", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["questionnaire_answer_id"], name: "index_questionnaire_item_answers_on_questionnaire_answer_id", using: :btree
+    t.index ["questionnaire_item_id"], name: "index_questionnaire_item_answers_on_questionnaire_item_id", using: :btree
   end
 
   create_table "questionnaire_items", force: :cascade do |t|
