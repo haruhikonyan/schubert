@@ -1,5 +1,5 @@
 class QuestionnairesController < ApplicationController
-  before_action :set_questionnaire, only: [:show, :edit, :update, :destroy]
+  before_action :set_questionnaire, only: [:show, :edit, :update, :destroy, :answer]
 
   # GET /questionnaires
   # GET /questionnaires.json
@@ -65,6 +65,10 @@ class QuestionnairesController < ApplicationController
       format.html { redirect_to questionnaires_url, notice: 'Questionnaire was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # GET /questionnaires/1/answer
+  def answer
   end
 
   private

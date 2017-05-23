@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :recruits, except:[:edit]
   post 'recruits/:id/edit', to: 'recruits#edit', as: 'edit_recruit'
   resources :questionnaires
+  get 'questionnaires/:id/answer', to: 'questionnaires#answer', as: 'answer_questionnaire'
 
 end
