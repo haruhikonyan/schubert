@@ -1,0 +1,31 @@
+<p><%= questionnaire.title %></p>
+<p><%= questionnaire.discription %></p>
+<% questionnaire.questionnaire_items.each do |item| %>
+  <p><%= item.title %></p>
+  <% item.questionnaire_choices_options.each do |option| %>
+    <p><%= option.option_name %></p>
+  <% end %>
+<% end %>
+
+<%= form_for(questionnaire_answer) do |f| %>
+
+  <% questionnaire.questionnaire_items.each do |item| %>
+    <%= fields_for QuestionnaireAnswerItem.new do |i| %>
+
+      <div class="field">
+        <%= i.label :item.title %>
+        <%= i.text_field :free_text_answer, class: 'form-control' %>
+      </div>
+
+      <% item.questionnaire_choices_options.each do |option| %>
+        <p><%= option.option_name %></p>
+      <% end %>
+    
+
+    <% end %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

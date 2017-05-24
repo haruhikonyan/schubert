@@ -69,6 +69,11 @@ class QuestionnairesController < ApplicationController
 
   # GET /questionnaires/1/answer
   def answer
+    @questionnaire_answer = QuestionnaireAnswer.new
+  end
+
+  def create_answer
+
   end
 
   private
