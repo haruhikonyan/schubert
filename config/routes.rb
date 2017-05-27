@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   post 'teams/:id/admin', to: 'teams#admin', as: 'admin_team'
   resources :recruits, except:[:edit]
   post 'recruits/:id/edit', to: 'recruits#edit', as: 'edit_recruit'
-
+  get 'about', to:'about#index', as: 'about'
 end
