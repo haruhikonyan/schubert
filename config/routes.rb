@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   post 'recruits/:id/edit', to: 'recruits#edit', as: 'edit_recruit'
   resources :questionnaires
   get 'questionnaires/:id/answer', to: 'questionnaires#answer', as: 'answer_questionnaire'
+  post 'questionnaires/:id/create_answer', to: 'questionnaires#create_answer', as: 'create_answer_questionnaire'
 
 end
