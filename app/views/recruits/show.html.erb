@@ -39,11 +39,11 @@
     <% end %>
     <%= form_tag edit_recruit_path(@recruit) do %>
       <div class="field">
-        <%= label_tag 'password'%>
+        <%= label_tag 'パスワード'%>
         <%= password_field_tag 'password' %>
-        <%= submit_tag  'Edit' %>
+        <%= submit_tag  '編集' %>
       </div>
     <% end %>
-    <p><%= link_to 'Back', recruits_path %></p>
+    <p><%= link_to '団員募集に戻る', recruits_path %></p>
   </div>
 </div>
