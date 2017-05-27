@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Teams</h1>
+<h1>団体一覧</h1>
 
 <table>
   <thead>
@@ -13,7 +13,7 @@
     <% @teams.each do |team| %>
       <tr>
         <td><%= team.name %></td>
-        <td><%= link_to 'Show', team %></td>
+        <td><%= link_to ' 詳細を表示', team %></td>
       </tr>
     <% end %>
   </tbody>
@@ -21,4 +21,4 @@
 
 <br>
 
-<%= link_to 'New Team', new_team_path %>
+<%= link_to '新しい団体を作る', new_team_path %>
