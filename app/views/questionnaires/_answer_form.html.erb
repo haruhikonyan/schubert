@@ -1,25 +1,21 @@
-<p><%= questionnaire.title %></p>
-<p><%= questionnaire.discription %></p>
-<% questionnaire.questionnaire_items.each do |item| %>
-  <p><%= item.title %></p>
-  <% item.questionnaire_choices_options.each do |option| %>
-    <p><%= option.option_name %></p>
-  <% end %>
-<% end %>
+<p><%= @questionnaire.title %></p>
+<p><%= simple_format(@questionnaire.discription) %></p>
 
-<%= form_for(questionnaire_answer) do |f| %>
+
+<%= form_for(questionnaire_answer, :url => {:action => :answer}) do |f| %>
 
   <% questionnaire.questionnaire_items.each do |item| %>
-    <%= fields_for QuestionnaireAnswerItem.new do |i| %>
-
+    <%= fields_for QuestionnaireItemAnswer.new do |i| %>
+      <%= i.label item.title %>
       <div class="field">
-        <%= i.label :item.title %>
-        <%= i.text_field :free_text_answer, class: 'form-control' %>
+        <%= collection_check_boxes(:questionnaire_choices_options, :answer_choices_option_ids, item.questionnaire_choices_options, :id, :option_name) %> 
       </div>
-
-      <% item.questionnaire_choices_options.each do |option| %>
-        <p><%= option.option_name %></p>
+      <% item.questionnaire_choices_options.each do |o| %>
+        <%= i.check_box :answer_choices_option_ids, { multiple: true }, o.id %> 
       <% end %>
+      <div class="field">
+        <%= i.text_area :free_text_answer, class: 'form-control' %>
+      </div>
     
 
     <% end %>
