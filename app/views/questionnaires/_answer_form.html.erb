@@ -4,19 +4,19 @@
 
 <%= form_for(questionnaire_answer, :url => {:action => :create_answer}) do |f| %>
 
-  <% questionnaire.questionnaire_items.each do |item| %>
-    <%= fields_for QuestionnaireItemAnswer.new(questionnaire_answer: questionnaire_answer) do |i| %>
-      <%= i.label item.title %>
+  <% questionnaire_item_answers.each.with_index do |qia, index| %>
+    <%= fields_for "questionnaire_item_answers[]", qia do |i| %>
+      <%= i.label questionnaire.questionnaire_items[index].title %>
 
       <div class="field">
-      <% if item.is_multiple %>
+      <% if questionnaire.questionnaire_items[index].is_multiple %>
         <!--paramsに空欄が混ざるのはなぜだろう？-->
-        <%= collection_check_boxes(:questionnaire_choices_options, :answer_choices_option_ids, item.questionnaire_choices_options, :id, :option_name) %> 
+        <%= collection_check_boxes(:questionnaire_choices_options, questionnaire.questionnaire_items[index].id, questionnaire.questionnaire_items[index].questionnaire_choices_options, :id, :option_name, include_hidden: false) %> 
       <% elsif %>
-        <%= collection_radio_buttons(:questionnaire_choices_options, :answer_choices_option_ids, item.questionnaire_choices_options, :id, :option_name) %> 
+        <%= collection_radio_buttons(:questionnaire_choices_options, :answer_choices_option_ids, questionnaire.questionnaire_items[index].questionnaire_choices_options, :id, :option_name) %> 
       <% end %>
       </div>
-      <% if item.is_exist_free_text %>
+      <% if questionnaire.questionnaire_items[index].is_exist_free_text %>
         <div class="field">
           <%= i.text_area :free_text_answer, class: 'form-control' %>
         </div>

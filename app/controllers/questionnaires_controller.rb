@@ -70,6 +70,7 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires/1/answer
   def answer
     @questionnaire_answer = QuestionnaireAnswer.new
+    @questionnaire_item_answers = @questionnaire.questionnaire_items.size.times.map{ QuestionnaireItemAnswer.new(questionnaire_answer: @questionnaire_answer) }
   end
 
   def create_answer
