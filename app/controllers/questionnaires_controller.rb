@@ -74,6 +74,14 @@ class QuestionnairesController < ApplicationController
 
   def create_answer
     binding.pry
+    QuestionnaireAnswer.new
+
+    params[:questionnaire_item_answer].each_with_index do |qia, i|
+      # QuestionnaireItemAnswer.new(qia)
+      p qia[:free_text_answer]
+      p QuestionnaireItem.find(qia[:item_id])
+      p params[:questionnaire_choices_options][i.to_s]
+    end
   end
 
   private
