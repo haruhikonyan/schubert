@@ -1,5 +1,5 @@
 class QuestionnairesController < ApplicationController
-  before_action :set_questionnaire, only: [:show, :edit, :update, :destroy, :answer]
+  before_action :set_questionnaire, only: [:show, :edit, :update, :destroy, :answer, :create_answer]
 
   # GET /questionnaires
   # GET /questionnaires.json
@@ -73,15 +73,21 @@ class QuestionnairesController < ApplicationController
   end
 
   def create_answer
-    binding.pry
-    QuestionnaireAnswer.new
+    # TODO 本当はここで永続化したくない
+    #@QuestionnaireAnswer = QuestionnaireAnswer.new(questionnaire: @questionnaire)
+    @QuestionnaireAnswer = QuestionnaireAnswer.create(questionnaire: @questionnaire)
 
-    params[:questionnaire_item_answer].each_with_index do |qia, i|
-      # QuestionnaireItemAnswer.new(qia)
-      p qia[:free_text_answer]
-      p QuestionnaireItem.find(qia[:item_id])
-      p params[:questionnaire_choices_options][i.to_s]
+    # new_qies = []
+    questionnaire_item_answers_params.each_with_index do |qia_params, i|
+      qia = QuestionnaireItemAnswer.new(qia_params)
+      qia.questionnaire_choices_option_ids = params[:questionnaire_choices_options][i.to_s]
+      qia.questionnaire_answer = @QuestionnaireAnswer
+      binding.pry
+      qia.save
+      # new_ques << qia
     end
+    # TODO 事前に永続化ではなく、一気に保存したい
+    # @QuestionnaireAnswer.questionnaire_item_answers = new_ques
   end
 
   private
@@ -101,5 +107,11 @@ class QuestionnairesController < ApplicationController
 
     def questionnaire_choices_option_params
       params[:questionnaire_choices_option].try!(:permit!)
+    end
+
+    def questionnaire_item_answers_params
+      params[:questionnaire_item_answers].each do |qia_params|
+        qia_params.try!(:permit!)
+      end
     end
 end

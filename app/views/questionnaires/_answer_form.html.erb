@@ -5,9 +5,9 @@
 <%= form_for(questionnaire_answer, :url => {:action => :create_answer}) do |f| %>
 
   <% questionnaire.questionnaire_items.each_with_index do |item, index| %>
-    <%= fields_for "questionnaire_item_answer[]", QuestionnaireItemAnswer.new do |i| %>
+    <%= fields_for "questionnaire_item_answers[]", QuestionnaireItemAnswer.new do |i| %>
       <%= i.label item.title %>
-      <%= i.hidden_field 'item_id', value: item.id %>
+      <%= i.hidden_field 'questionnaire_item_id', value: item.id %>
 
       <div class="field">
       <% if item.is_multiple %>
