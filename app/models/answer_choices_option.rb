@@ -10,4 +10,6 @@
 #
 
 class AnswerChoicesOption < ApplicationRecord
+  belongs_to :questionnaire_choices_option
+  belongs_to :answer_choices_option
 end
