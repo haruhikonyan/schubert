@@ -74,20 +74,17 @@ class QuestionnairesController < ApplicationController
 
   def create_answer
     # TODO 本当はここで永続化したくない
-    #@QuestionnaireAnswer = QuestionnaireAnswer.new(questionnaire: @questionnaire)
-    @QuestionnaireAnswer = QuestionnaireAnswer.create(questionnaire: @questionnaire)
+    @QuestionnaireAnswer = QuestionnaireAnswer.new(questionnaire: @questionnaire)
 
-    # new_qies = []
+    new_qies = []
     questionnaire_item_answers_params.each_with_index do |qia_params, i|
       qia = QuestionnaireItemAnswer.new(qia_params)
       qia.questionnaire_choices_option_ids = params[:questionnaire_choices_options][i.to_s]
       qia.questionnaire_answer = @QuestionnaireAnswer
-      binding.pry
-      qia.save
-      # new_ques << qia
+      new_qies << qia
     end
-    # TODO 事前に永続化ではなく、一気に保存したい
-    # @QuestionnaireAnswer.questionnaire_item_answers = new_ques
+    @QuestionnaireAnswer.questionnaire_item_answers = new_qies
+    @QuestionnaireAnswer.save
   end
 
   private

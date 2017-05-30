@@ -11,7 +11,4 @@
 class QuestionnaireAnswer < ApplicationRecord
   belongs_to :questionnaire
   has_many :questionnaire_item_answers
-  
-# 　TODO 一気に保存されるらしい？？　まだ未実装
-#   accepts_nested_attributes_for :questionnaire_item_answers
 end
