@@ -6,7 +6,7 @@
     <%= render 'form', recruit: @recruit%>
 
 
-    <p><%= button_to '募集を削除する', @recruit, method: :delete, data: { confirm: 'Are you sure?' }  %></p>
-    <%= link_to 'Back', recruits_path %>
+    <p><%= button_to '募集を削除する', @recruit, method: :delete, data: { confirm: '本当に削除しますか?' }  %></p>
+    <%= link_to '団員募集に戻る', recruits_path %>
   </div>
 </div>
