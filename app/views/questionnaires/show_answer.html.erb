@@ -3,12 +3,13 @@
 <p><%= @questionnaire_answer.id %></p>
 <% @questionnaire_answer.questionnaire_item_answers.each do |qia| %>
 <p><%= qia.questionnaire_item.title %></p>
-
-  選択肢
-  <% qia.questionnaire_choices_options.each do |option| %>
-    <%= option.try(:option_name) %>
-  <% end %>
-  <%= qia.free_text_answer %>
+  <p>
+    選択肢
+    <% qia.questionnaire_choices_options.each do |option| %>
+      <%= option.try(:option_name) %>
+    <% end %>
+  </p>
+  <p><%= simple_format(qia.free_text_answer) %></p>
 <% end %>
 
 
