@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   resources :questionnaires
   get 'questionnaires/:id/answer', to: 'questionnaires#answer', as: 'answer_questionnaire'
   post 'questionnaires/:id/create_answer', to: 'questionnaires#create_answer', as: 'create_answer_questionnaire'
+  get 'questionnaire_answers/:id/show_answer', to: 'questionnaires#show_answer', as: 'show_answer_questionnaire'
 
 end

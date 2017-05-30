@@ -1,5 +1,6 @@
 class QuestionnairesController < ApplicationController
   before_action :set_questionnaire, only: [:show, :edit, :update, :destroy, :answer, :create_answer]
+  before_action :set_answer_questionnaire, only: [:show_answer]
 
   # GET /questionnaires
   # GET /questionnaires.json
@@ -84,13 +85,28 @@ class QuestionnairesController < ApplicationController
       new_qies << qia
     end
     @QuestionnaireAnswer.questionnaire_item_answers = new_qies
-    @QuestionnaireAnswer.save
+    
+    respond_to do |format|
+      # 個別に一つ一つ保存していくのではなく一気に保存したい
+      if @QuestionnaireAnswer.save
+        format.html { redirect_to show_answer_questionnaire_path(@QuestionnaireAnswer), notice: 'QuestionnaireAnswer was successfully created.' }
+      else
+        format.html { render :new }
+      end
+    end
+  end
+
+  def show_answeer
+
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_questionnaire
       @questionnaire = Questionnaire.find(params[:id])
+    end
+    def set_answer_questionnaire
+      @questionnaire_answer = QuestionnaireAnswer.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
