@@ -13,7 +13,7 @@
       <% if item.is_multiple %>
         <%= collection_check_boxes(:questionnaire_choices_options, index, item.questionnaire_choices_options, :id, :option_name, include_hidden: false) %> 
       <% elsif %>
-        <%= collection_radio_buttons(:questionnaire_choices_options, :index, item.questionnaire_choices_options, :id, :option_name, include_hidden: false) %> 
+        <%= collection_radio_buttons(:questionnaire_choices_options, index, item.questionnaire_choices_options, :id, :option_name, include_hidden: false) %> 
       <% end %>
       </div>
       <% if item.is_exist_free_text %>
