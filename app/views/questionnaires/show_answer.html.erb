@@ -1,12 +1,13 @@
 回答ありがとうございました
 
-<p><%= @questionnaire_answer.id %></p>
 <% @questionnaire_answer.questionnaire_item_answers.each do |qia| %>
-<p><%= qia.questionnaire_item.title %></p>
+<h4><%= qia.questionnaire_item.title %></h4>
   <p>
-    選択肢
-    <% qia.questionnaire_choices_options.each do |option| %>
-      <%= option.try(:option_name) %>
+    <% unless qia.questionnaire_choices_options.blank? %>
+      選択肢:
+      <% qia.questionnaire_choices_options.each do |option| %>
+        <%= option.try(:option_name) %>
+      <% end %>
     <% end %>
   </p>
   <p><%= simple_format(qia.free_text_answer) %></p>
