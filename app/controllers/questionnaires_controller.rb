@@ -1,6 +1,6 @@
 class QuestionnairesController < ApplicationController
   before_action :set_questionnaire, only: [:show, :edit, :update, :destroy, :answer, :create_answer]
-  before_action :set_answer_questionnaire, only: [:show_answer]
+  before_action :set_questionnaire_answer, only: [:show_answer]
 
   # GET /questionnaires
   # GET /questionnaires.json
@@ -105,7 +105,8 @@ class QuestionnairesController < ApplicationController
     def set_questionnaire
       @questionnaire = Questionnaire.find(params[:id])
     end
-    def set_answer_questionnaire
+
+    def set_questionnaire_answer
       @questionnaire_answer = QuestionnaireAnswer.find(params[:id])
     end
 
