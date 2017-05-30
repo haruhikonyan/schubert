@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325050054) do
+ActiveRecord::Schema.define(version: 20170501003226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "concert_informations", force: :cascade do |t|
+    t.string   "name",                     null: false
+    t.date     "day"
+    t.datetime "performance_opening_time"
+    t.datetime "place_opening_time"
+    t.string   "place"
+    t.string   "place_url"
+    t.string   "director"
+    t.integer  "price"
+    t.string   "ticket_type"
+    t.text     "introduction"
+    t.integer  "team_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "instrument_categories", force: :cascade do |t|
     t.string   "name"
@@ -61,6 +77,28 @@ ActiveRecord::Schema.define(version: 20170325050054) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["name"], name: "index_regions_on_name", using: :btree
+  end
+
+  create_table "repertoires", force: :cascade do |t|
+    t.string   "name",                   null: false
+    t.string   "composer"
+    t.integer  "concert_information_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "soloist_instruments", force: :cascade do |t|
+    t.integer  "soloist_id"
+    t.integer  "instrument_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "soloists", force: :cascade do |t|
+    t.string   "name",          null: false
+    t.integer  "repertoire_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "team_regions", force: :cascade do |t|

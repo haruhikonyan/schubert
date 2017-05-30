@@ -14,6 +14,8 @@
 class Instrument < ApplicationRecord
   has_many :recruit_instruments
   has_many :recruits, :through => :recruit_instruments
+  has_many :soloist_instruments
+  has_many :soloists, :through => :soloist_instruments
 
   belongs_to :instrument_category
 
