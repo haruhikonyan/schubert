@@ -1,0 +1,49 @@
+<%= form_for(questionnaire) do |f| %>
+  <% if questionnaire.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(questionnaire.errors.count, "error") %> prohibited this questionnaire from being saved:</h2>
+
+      <ul>
+      <% questionnaire.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :'アンケートタイトル' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <!--パスワードっているかな？？
+  <div class="field">
+    <%= f.label :'password' %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>-->
+  <div class="field">
+    <%= f.label :'説明(タイトルの下に表示されます)'%>
+    <%= f.text_area :discription, class: 'form-control' %>
+  </div>
+  <%= fields_for QuestionnaireItem.new do |i| %>
+    <div class="field">
+      <%= i.label :'アンケートアイテムタイトル' %>
+      <%= i.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="field">
+      <%= i.label :'テキストエリア表示' %>
+      <%= i.check_box :is_exist_free_text, class: 'form-control' %>
+    </div>
+    <div class="field">
+      <%= i.label :'テキストエリア複数選択' %>
+      <%= i.check_box :is_multiple, class: 'form-control' %>
+    </div>
+    <%= fields_for QuestionnaireChoicesOption.new do |c| %>
+      <%= c.label :'選択肢名' %>
+      <%= c.text_field :option_name, class: 'form-control' %>
+    <% end %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

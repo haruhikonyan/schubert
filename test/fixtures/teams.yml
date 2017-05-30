@@ -8,6 +8,7 @@
 #  mail            :string
 #  url             :string
 #  free_text       :text
+#  is_public       :boolean          default("false")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
