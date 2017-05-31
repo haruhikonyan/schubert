@@ -1,7 +1,6 @@
-<h4><%= @questionnaire_item.title %>回答一覧</h4>
+<h4><%= @questionnaire_item.title %>の回答一覧</h4>
 
 <% @questionnaire_item_answers.each do |qia| %>
-<h4><%= qia.questionnaire_item.title %></h4>
   <p>
     <% unless qia.questionnaire_choices_options.blank? %>
       選択肢:
@@ -10,7 +9,8 @@
       <% end %>
     <% end %>
   </p>
-  <p><%= simple_format(qia.free_text_answer) %></p>
+  <p>自由回答欄:<%= simple_format(qia.free_text_answer) %></p>
+  <hr>
 <% end %>
 
 
