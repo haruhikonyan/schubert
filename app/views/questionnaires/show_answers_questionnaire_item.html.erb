@@ -1,0 +1,16 @@
+<h4><%= @questionnaire_item.title %>回答一覧</h4>
+
+<% @questionnaire_item_answers.each do |qia| %>
+<h4><%= qia.questionnaire_item.title %></h4>
+  <p>
+    <% unless qia.questionnaire_choices_options.blank? %>
+      選択肢:
+      <% qia.questionnaire_choices_options.each do |option| %>
+        <%= option.try(:option_name) %>
+      <% end %>
+    <% end %>
+  </p>
+  <p><%= simple_format(qia.free_text_answer) %></p>
+<% end %>
+
+

@@ -2,6 +2,8 @@ class QuestionnairesController < ApplicationController
   before_action :set_questionnaire, only: [:show, :edit, :update, :destroy, :answer, :create_answer, :show_answers]
   before_action :set_questionnaire_answer, only: [:show_answer]
   before_action :set_questionnaire_answers, only: [:show_answers]
+  before_action :set_questionnaire_item, only: [:show_answers_questionnaire_item]
+  before_action :set_questionnaire_item_answers, only: [:show_answers_questionnaire_item]
   # GET /questionnaires
   # GET /questionnaires.json
   def index
@@ -102,6 +104,10 @@ class QuestionnairesController < ApplicationController
   def show_answers
   end
 
+  def show_answers_questionnaire_item
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_questionnaire
@@ -114,6 +120,14 @@ class QuestionnairesController < ApplicationController
 
     def set_questionnaire_answers
       @questionnaire_answers = QuestionnaireAnswer.where(questionnaire: params[:id])
+    end
+
+    def set_questionnaire_item
+      @questionnaire_item = QuestionnaireItem.find(params[:id])
+    end
+
+    def set_questionnaire_item_answers
+      @questionnaire_item_answers = QuestionnaireItemAnswer.where(questionnaire_item: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
