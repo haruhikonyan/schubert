@@ -1,7 +1,8 @@
 回答ありがとうございました
 
 <% @questionnaire_answer.questionnaire_item_answers.each do |qia| %>
-<h4><%= qia.questionnaire_item.title %></h4>
+  <hr>
+  <h4><%= qia.questionnaire_item.title %></h4>
   <p>
     <% unless qia.questionnaire_choices_options.blank? %>
       選択肢:
