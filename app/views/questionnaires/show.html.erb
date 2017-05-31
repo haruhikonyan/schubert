@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p><%= @questionnaire.title %></p>
-<p><%= simple_format(@questionnaire.discription) %></p>
+<%= simple_format(@questionnaire.discription) %>
 <% @questionnaire.questionnaire_items.each do |item| %>
   <p><%= item.title %></p>
   <% item.questionnaire_choices_options.each do |option| %>

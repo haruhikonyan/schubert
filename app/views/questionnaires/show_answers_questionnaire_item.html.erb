@@ -10,7 +10,7 @@
       <% end %>
     <% end %>
   </p>
-  <p>自由回答欄:<%= simple_format(qia.free_text_answer) %></p>
+  自由回答欄:<%= simple_format(qia.free_text_answer) %>
   <p><%= link_to 'この回答者の他の回答も見る', show_answer_questionnaire_path(qia.questionnaire_answer) %></p>
 
 <% end %>

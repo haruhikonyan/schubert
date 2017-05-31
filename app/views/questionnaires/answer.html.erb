@@ -1,4 +1,4 @@
 <h2><%= @questionnaire.title %></h2>
-<p><%= simple_format(@questionnaire.discription) %></p>
+<%= simple_format(@questionnaire.discription) %>
 
 <%= render 'answer_form', questionnaire: @questionnaire, questionnaire_answer: @questionnaire_answer %>

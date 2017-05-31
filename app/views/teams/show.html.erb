@@ -20,7 +20,7 @@
         <div class="col-sm-offset-1 col-md-11">
           <p>連絡先:<%= @team.mail %></p>
           <p>URL:<%= link_to @team.url %></p>
-          <p><%= simple_format(@team.free_text) %></p>
+          <%= simple_format(@team.free_text) %>
         </div>
       </div>
     <% else %>
