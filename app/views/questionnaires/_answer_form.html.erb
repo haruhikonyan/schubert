@@ -1,6 +1,6 @@
 <%= form_for(questionnaire_answer, :url => {:action => :create_answer}) do |f| %>
-  <hr>
   <% questionnaire.questionnaire_items.each_with_index do |item, index| %>
+    <hr>
     <%= fields_for "questionnaire_item_answers[]", QuestionnaireItemAnswer.new do |i| %>
       <%= i.label item.title %>
       <%= i.hidden_field 'questionnaire_item_id', value: item.id %>
