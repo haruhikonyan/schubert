@@ -1,7 +1,7 @@
 class QuestionnairesController < ApplicationController
-  before_action :set_questionnaire, only: [:show, :edit, :update, :destroy, :answer, :create_answer]
+  before_action :set_questionnaire, only: [:show, :edit, :update, :destroy, :answer, :create_answer, :show_answers]
   before_action :set_questionnaire_answer, only: [:show_answer]
-
+  before_action :set_questionnaire_answers, only: [:show_answers]
   # GET /questionnaires
   # GET /questionnaires.json
   def index
@@ -96,8 +96,10 @@ class QuestionnairesController < ApplicationController
     end
   end
 
-  def show_answeer
+  def show_answer
+  end
 
+  def show_answers
   end
 
   private
@@ -108,6 +110,10 @@ class QuestionnairesController < ApplicationController
 
     def set_questionnaire_answer
       @questionnaire_answer = QuestionnaireAnswer.find(params[:id])
+    end
+
+    def set_questionnaire_answers
+      @questionnaire_answers = QuestionnaireAnswer.where(questionnaire: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
