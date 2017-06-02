@@ -4,9 +4,10 @@
   </div>
 <% end %>
 
-<p><%= @questionnaire.title %></p>
+<h2><%= @questionnaire.title %></h2>
 <%= simple_format(@questionnaire.discription) %>
 <% @questionnaire.questionnaire_items.each do |item| %>
+  <hr>
   <p><%= item.title %></p>
   選択肢：
   <% item.questionnaire_choices_options.each do |option| %>
