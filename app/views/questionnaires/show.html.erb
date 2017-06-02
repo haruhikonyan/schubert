@@ -8,11 +8,11 @@
 <%= simple_format(@questionnaire.discription) %>
 <% @questionnaire.questionnaire_items.each do |item| %>
   <hr>
-  <p><%= item.title %></p>
-  選択肢：
+  <h4><%= item.title %></h4>
+  <p>選択肢：
   <% item.questionnaire_choices_options.each do |option| %>
     <%= option.option_name %>&nbsp;
-  <% end %>
+  <% end %></p>
 <% end %>
 
 <%= link_to 'アンケートに答える', answer_questionnaire_path(@questionnaire) %>
