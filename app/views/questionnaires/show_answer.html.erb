@@ -7,7 +7,7 @@
     <% unless qia.questionnaire_choices_options.blank? %>
       選択肢:
       <% qia.questionnaire_choices_options.each do |option| %>
-        <%= option.try(:option_name) %>
+        <%= option.try(:option_name) %>&nbsp;
       <% end %>
     <% end %>
   </p>

@@ -8,8 +8,9 @@
 <%= simple_format(@questionnaire.discription) %>
 <% @questionnaire.questionnaire_items.each do |item| %>
   <p><%= item.title %></p>
+  選択肢：
   <% item.questionnaire_choices_options.each do |option| %>
-    <p><%= option.option_name %></p>
+    <%= option.option_name %>&nbsp;
   <% end %>
 <% end %>
 
