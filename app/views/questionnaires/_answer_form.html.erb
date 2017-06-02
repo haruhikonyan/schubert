@@ -2,7 +2,7 @@
   <% questionnaire.questionnaire_items.each_with_index do |item, index| %>
     <hr>
     <%= fields_for "questionnaire_item_answers[]", QuestionnaireItemAnswer.new do |i| %>
-      <%= i.label item.title %>
+      <label><%= item.title %></label>
       <%= i.hidden_field 'questionnaire_item_id', value: item.id %>
 
       <div class="field">
