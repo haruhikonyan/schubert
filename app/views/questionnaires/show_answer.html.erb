@@ -12,6 +12,7 @@
     <% end %>
   </p>
   <%= simple_format(qia.free_text_answer) %>
+  <p><%= link_to 'この解答欄の回答一覧を見る', show_answers_questionnaire_item_path(qia.questionnaire_item) %></p>
 <% end %>
 
 

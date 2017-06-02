@@ -91,7 +91,7 @@ class QuestionnairesController < ApplicationController
     respond_to do |format|
       # 個別に一つ一つ保存していくのではなく一気に保存したい
       if @QuestionnaireAnswer.save
-        format.html { redirect_to show_answer_questionnaire_path(@QuestionnaireAnswer), notice: 'QuestionnaireAnswer was successfully created.' }
+        format.html { redirect_to @questionnaire, notice: '回答ありがとうございました。' }
       else
         format.html { render :new }
       end

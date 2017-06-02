@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if flash[:notice] %>
+  <div class="notice alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 
 <p><%= @questionnaire.title %></p>
 <%= simple_format(@questionnaire.discription) %>
@@ -11,5 +15,4 @@
 
 <%= link_to 'アンケートに答える', answer_questionnaire_path(@questionnaire) %>
 
-<%= link_to 'Edit', edit_questionnaire_path(@questionnaire) %> |
-<%= link_to 'Back', questionnaires_path %>
+<% #link_to 'Edit', edit_questionnaire_path(@questionnaire) TODO アンケート回答期間でないかつ、誰もアンケートに答えてない場合に出す%>
