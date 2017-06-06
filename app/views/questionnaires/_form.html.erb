@@ -15,14 +15,27 @@
     <%= f.label :'アンケートタイトル' %>
     <%= f.text_field :title, class: 'form-control' %>
   </div>
-  <!--パスワードっているかな？？
   <div class="field">
-    <%= f.label :'password' %>
+    <%= f.label :'回答結果閲覧用パスワード' %>
     <%= f.password_field :password, class: 'form-control' %>
-  </div>-->
+  </div>
   <div class="field">
     <%= f.label :'説明(タイトルの下に表示されます)'%>
-    <%= f.text_area :discription, class: 'form-control' %>
+    <%= f.text_area :header_discription, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :'説明(タイトルの一番下に表示されます)'%>
+    <%= f.text_area :footer_discription, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :'回答開始期間'%>
+    <%= f.datetime_select :published_from, class: 'form-control date-picker', use_month_numbers: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :'回答終了期間'%>
+    <%= f.datetime_select :published_to, class: 'form-control date-picker', use_month_numbers: true %>
   </div>
   <%= fields_for QuestionnaireItem.new do |i| %>
     <div class="field">
@@ -44,6 +57,6 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'アンケート作成' %>
   </div>
 <% end %>
