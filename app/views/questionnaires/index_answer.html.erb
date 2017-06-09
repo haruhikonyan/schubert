@@ -1,7 +1,7 @@
 <h2><%= @questionnaire.title%>回答一覧</h2>
 
 <% @questionnaire_answers.each do |qa| %>
-  <p><%= link_to '回答確認', show_answer_questionnaire_path(qa) %></p>
+  <p><%= link_to '回答確認', qa %></p>
 <% end %>
 
 

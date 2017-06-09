@@ -5,7 +5,7 @@
 <% end %>
 
 <h2><%= @questionnaire.title %></h2>
-<%= simple_format(@questionnaire.discription) %>
+<%= simple_format(@questionnaire.header_discription) %>
 <% @questionnaire.questionnaire_items.each do |item| %>
   <hr>
   <h4><%= item.title %></h4>
@@ -14,6 +14,7 @@
     <%= option.option_name %>&nbsp;
   <% end %></p>
 <% end %>
+<%= simple_format(@questionnaire.footer_discription) %>
 
 <%= link_to 'アンケートに答える', answer_questionnaire_path(@questionnaire) %>
 
