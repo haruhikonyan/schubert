@@ -1,5 +1,5 @@
 class QuestionnairesController < ApplicationController
-  before_action :set_questionnaire, only: [:show, :edit, :update, :destroy, :answer, :create_answer, :index_answer]
+  before_action :set_questionnaire, only: [:show, :edit, :update, :destroy, :answer, :create_answer, :index_answer, :admin]
   before_action :set_questionnaire_answer, only: [:show_answer]
   before_action :set_questionnaire_answers, only: [:index_answer]
   before_action :set_questionnaire_item, only: [:show_answers_questionnaire_item]
@@ -13,6 +13,12 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires/1
   # GET /questionnaires/1.json
   def show
+  end
+
+  # GET /questionnaires/1/admin
+  def admin
+    session[:q_password] = params[:q_password]
+    redirect_to @questionnaire, alert: 'パスワードが違います' unless @questionnaire.authenticate(session[:q_password])
   end
 
   # GET /questionnaires/new
