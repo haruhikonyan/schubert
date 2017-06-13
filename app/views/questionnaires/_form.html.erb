@@ -43,6 +43,10 @@
       <%= i.text_field :title, class: 'form-control' %>
     </div>
     <div class="field">
+      <%= i.label :'ソート順' %>
+      <%= i.text_field :sort_number, class: 'form-control' %>
+    </div>
+    <div class="field">
       <%= i.label :'テキストエリア表示' %>
       <%= i.check_box :is_exist_free_text, class: 'form-control' %>
     </div>
