@@ -1,9 +1,6 @@
 class QuestionnairesController < ApplicationController
   before_action :set_questionnaire, only: [:show, :edit, :update, :destroy, :answer, :create_answer, :index_answer, :admin]
-  before_action :set_questionnaire_answer, only: [:show_answer]
   before_action :set_questionnaire_answers, only: [:index_answer]
-  before_action :set_questionnaire_item, only: [:show_answers_questionnaire_item]
-  before_action :set_questionnaire_item_answers, only: [:show_answers_questionnaire_item]
   # GET /questionnaires
   # GET /questionnaires.json
   def index
@@ -104,20 +101,13 @@ class QuestionnairesController < ApplicationController
     end
   end
 
-  def show_answer
-  end
-
   def index_answer
-  end
-
-  def show_answers_questionnaire_item
-
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_questionnaire
-      @questionnaire = Questionnaire.find(params[:id])
+      @questionnaire = Questionnaire.friendly.find(params[:id])
     end
 
     def set_questionnaire_answer
@@ -125,7 +115,8 @@ class QuestionnairesController < ApplicationController
     end
 
     def set_questionnaire_answers
-      @questionnaire_answers = QuestionnaireAnswer.where(questionnaire: params[:id])
+      # idで検索できないのはしかたないか？
+      @questionnaire_answers = QuestionnaireAnswer.where(questionnaire: @questionnaire)
     end
 
     def set_questionnaire_item

@@ -67,3 +67,5 @@ gem 'kaminari'
 gem "select2-rails"
 
 gem 'jquery-turbolinks'
+
+gem 'friendly_id'
