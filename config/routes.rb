@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   get 'about', to: 'about#index', as: 'about'
   resources :questionnaires
   get 'questionnaires/:id/answer', to: 'questionnaires#answer', as: 'answer_questionnaire'
-  # TODO 要設計 超わかりづらい 一つの回答を見るアクションと複数の回答を見るアクションの区別がsか否か コントローラ分ければいいんだよなきっと
-  get 'questionnaires/:id/show_answers', to: 'questionnaires#show_answers', as: 'show_answers_questionnaire'
   post 'questionnaires/:id/create_answer', to: 'questionnaires#create_answer', as: 'create_answer_questionnaire'
-  get 'questionnaire_answers/:id/show_answer', to: 'questionnaires#show_answer', as: 'show_answer_questionnaire'
-  get 'questionnaire_items/:id/show_answers', to: 'questionnaires#show_answers_questionnaire_item', as: 'show_answers_questionnaire_item'
+  get 'questionnaires/:id/index_answer', to: 'questionnaires#index_answer', as: 'index_answer_questionnaire'
+  post 'questionnaires/:id/admin', to: 'questionnaires#admin', as: 'admin_questionnaire'
+  get 'questionnaire_answers/:id', to: 'questionnaire_answers#show', as: 'questionnaire_answer'
+  get 'questionnaire_items/:id', to: 'questionnaire_items#show', as: 'questionnaire_item'
 
 end

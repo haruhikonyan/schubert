@@ -1,4 +1,5 @@
 <h2><%= @questionnaire.title %></h2>
-<%= simple_format(@questionnaire.discription) %>
+<%= simple_format(@questionnaire.header_discription) %>
 
 <%= render 'answer_form', questionnaire: @questionnaire, questionnaire_answer: @questionnaire_answer %>
+<%= simple_format(@questionnaire.footer_discription) %>

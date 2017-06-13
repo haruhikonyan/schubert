@@ -1,0 +1,5 @@
+<h2><%= @questionnaire.title %> 管理ページ</h2>
+
+<%# TODO 各種操作パスワードを必要に %>
+<p><%= button_to 'アンケートの回答一覧を見る', index_answer_questionnaire_path, method: :get %></p>
+<p><%= button_to 'アンケートを削除する', @questionnaire, method: :delete, data: { confirm: 'Are you sure?' } %></p>

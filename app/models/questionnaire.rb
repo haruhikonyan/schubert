@@ -10,5 +10,7 @@
 #
 
 class Questionnaire < ApplicationRecord
+  # SecurePassword有効
+  has_secure_password
   has_many :questionnaire_items
 end

@@ -1,11 +1,18 @@
+<%# TODO 二つ書くの冗長だからまとめられないかしら？ %>
 <% if flash[:notice] %>
   <div class="notice alert-success">
     <%= flash[:notice] %>
   </div>
 <% end %>
 
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
 <h2><%= @questionnaire.title %></h2>
-<%= simple_format(@questionnaire.discription) %>
+<%= simple_format(@questionnaire.header_discription) %>
 <% @questionnaire.questionnaire_items.each do |item| %>
   <hr>
   <h4><%= item.title %></h4>
@@ -14,7 +21,15 @@
     <%= option.option_name %>&nbsp;
   <% end %></p>
 <% end %>
+<%= simple_format(@questionnaire.footer_discription) %>
 
 <%= link_to 'アンケートに答える', answer_questionnaire_path(@questionnaire) %>
 
 <% #link_to 'Edit', edit_questionnaire_path(@questionnaire) TODO アンケート回答期間でないかつ、誰もアンケートに答えてない場合に出す%>
+<%= form_tag admin_questionnaire_path(@questionnaire) do %>
+  <div class="field">
+    <%= label_tag 'アンケートパスワード'%>
+    <%= password_field_tag 'q_password' %>
+    <%= submit_tag  'アンケート管理画面へ' %>
+  </div>
+<% end %>

@@ -78,10 +78,14 @@ ActiveRecord::Schema.define(version: 20170522131000) do
   end
 
   create_table "questionnaires", force: :cascade do |t|
-    t.string   "title",       null: false
-    t.text     "discription"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "title",              null: false
+    t.text     "header_discription"
+    t.text     "footer_discription"
+    t.string   "password_digest",    null: false
+    t.datetime "published_from",     null: false
+    t.datetime "published_to",       null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "recruit_instruments", force: :cascade do |t|
