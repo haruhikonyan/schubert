@@ -4,6 +4,7 @@
 #
 #  id                 :integer          not null, primary key
 #  title              :string           not null
+#  sort_number        :integer          not null
 #  is_exist_free_text :boolean          default("false"), not null
 #  is_multiple        :boolean          default("true"), not null
 #  questionnaire_id   :integer          not null

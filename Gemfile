@@ -69,3 +69,5 @@ gem "select2-rails"
 gem 'jquery-turbolinks'
 
 gem 'friendly_id'
+
+gem 'activerecord-session_store'
