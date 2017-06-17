@@ -26,7 +26,7 @@
     <%= f.text_field :title , class: 'form-control'%>
   </div>
   <% unless @team %>
-    <%= f.fields_for recruit.team do |t| %>
+    <%= fields_for recruit.team do |t| %>
       <div class="field">
         <%= t.label :'団体名' %>
         <%= t.text_field :name, class: 'form-control' %>
@@ -84,6 +84,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit '団員募集新規作成' %>
+    <%= f.submit %>
   </div>
 <% end %>
