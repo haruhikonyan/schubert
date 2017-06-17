@@ -87,11 +87,11 @@ class RecruitsController < ApplicationController
     def recruit_params
       # TODO view からくる params が微妙な入れ子になってて要修正？
       # <ActionController::Parameters {"team"=>{"name"=>"ddd", "password"=>"ppp"}, "practice_place"=>"aaa", "practoce_time"=>"ttt", "free_text"=>"fff"} permitted: false>
-      params[:recruit].except(:team).try!(:permit!)
+      params[:recruit].try!(:permit!)
     end
 
     def team_params
-      params[:recruit][:team].try!(:permit!)
+      params[:team].try!(:permit!)
     end
 
     def reset_password_session
