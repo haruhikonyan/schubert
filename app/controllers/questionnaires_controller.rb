@@ -21,6 +21,8 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires/new
   def new
     @questionnaire = Questionnaire.new
+    # ネスト先の子モデル questionnaire_items とその先の孫モデル questionnaire_choices_options をあらかじめ buildしておく
+    # 作っておかないとフォームが表示されない
     @questionnaire.questionnaire_items.build{|item| item.questionnaire_choices_options.build}
   end
 
@@ -31,6 +33,7 @@ class QuestionnairesController < ApplicationController
   # POST /questionnaires
   # POST /questionnaires.json
   def create
+    # TODO きちんとネストされたフォームに合わせる
     @questionnaire = Questionnaire.new(questionnaire_params)
     # 本当は複数のitemおよびchoicesが飛んでくるからどう処理しようものか。。。
     questionnaire_item = QuestionnaireItem.new(questionnaire_item_params)
@@ -129,6 +132,7 @@ class QuestionnairesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    # TODO きちんとネストされたフォームに合わせる(たぶん一つにまとまる)
     def questionnaire_params
       params[:questionnaire].try!(:permit!)
     end
