@@ -17,4 +17,6 @@ class QuestionnaireItem < ApplicationRecord
 
   has_many :questionnaire_choices_options
   has_many :questionnaire_item_answers
+
+  accepts_nested_attributes_for :questionnaire_choices_options, allow_destroy: true
 end

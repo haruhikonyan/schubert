@@ -21,6 +21,7 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires/new
   def new
     @questionnaire = Questionnaire.new
+    @questionnaire.questionnaire_items.build{|item| item.questionnaire_choices_options.build}
   end
 
   # GET /questionnaires/1/edit

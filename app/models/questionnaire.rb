@@ -22,6 +22,8 @@ class Questionnaire < ApplicationRecord
   has_secure_password
   has_many :questionnaire_items
 
+  accepts_nested_attributes_for :questionnaire_items, allow_destroy: true
+
 
   before_create do
     # 衝突しないか心配

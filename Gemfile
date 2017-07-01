@@ -71,3 +71,7 @@ gem 'jquery-turbolinks'
 gem 'friendly_id'
 
 gem 'activerecord-session_store'
+
+gem 'cocoon'
+
+gem 'simple_form'

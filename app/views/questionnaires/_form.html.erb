@@ -1,4 +1,4 @@
-<%= form_for(questionnaire) do |f| %>
+<%= simple_form_for(questionnaire) do |f| %>
   <% if questionnaire.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(questionnaire.errors.count, "error") %> prohibited this questionnaire from being saved:</h2>
@@ -12,53 +12,29 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :'アンケートタイトル' %>
-    <%= f.text_field :title, class: 'form-control' %>
+    <%= f.input :title, label: 'アンケートタイトル', class: 'form-control' %>
   </div>
   <div class="field">
-    <%= f.label :'回答結果閲覧用パスワード' %>
-    <%= f.password_field :password, class: 'form-control' %>
+    <%= f.input :password, label: '回答結果閲覧用パスワード', class: 'form-control' %>
   </div>
   <div class="field">
-    <%= f.label :'説明(タイトルの下に表示されます)'%>
-    <%= f.text_area :header_discription, class: 'form-control' %>
+    <%= f.input :header_discription, label: '説明(タイトルの下に表示されます)', class: 'form-control' %>
   </div>
   <div class="field">
-    <%= f.label :'説明(タイトルの一番下に表示されます)'%>
-    <%= f.text_area :footer_discription, class: 'form-control' %>
+    <%= f.input :footer_discription, label: '説明(一番下に表示されます)', class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= f.label :'回答開始期間'%>
-    <%= f.datetime_select :published_from, class: 'form-control date-picker', use_month_numbers: true %>
+    <%= f.input :published_from, label: '回答開始期間', class: 'form-control date-picker', use_month_numbers: true  %>
   </div>
 
   <div class="field">
-    <%= f.label :'回答終了期間'%>
-    <%= f.datetime_select :published_to, class: 'form-control date-picker', use_month_numbers: true %>
+    <%= f.input :published_to, label: '回答終了期間', class: 'form-control date-picker', use_month_numbers: true  %>
   </div>
-  <%= fields_for QuestionnaireItem.new do |i| %>
-    <div class="field">
-      <%= i.label :'アンケートアイテムタイトル' %>
-      <%= i.text_field :title, class: 'form-control' %>
-    </div>
-    <div class="field">
-      <%= i.label :'ソート順' %>
-      <%= i.text_field :sort_number, class: 'form-control' %>
-    </div>
-    <div class="field">
-      <%= i.label :'テキストエリア表示' %>
-      <%= i.check_box :is_exist_free_text, class: 'form-control' %>
-    </div>
-    <div class="field">
-      <%= i.label :'テキストエリア複数選択' %>
-      <%= i.check_box :is_multiple, class: 'form-control' %>
-    </div>
-    <%= fields_for QuestionnaireChoicesOption.new do |c| %>
-      <%= c.label :'選択肢名' %>
-      <%= c.text_field :option_name, class: 'form-control' %>
-    <% end %>
+  <%= f.simple_fields_for :questionnaire_items do |i| %>
+    <%= render 'questionnaire_item_fields', f: i %>
   <% end %>
+  <%= link_to_add_association 'item追加', f, :questionnaire_items, class: 'btn btn-default' %>
 
   <div class="actions">
     <%= f.submit 'アンケート作成' %>

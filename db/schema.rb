@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170614045742) do
 
   create_table "questionnaire_items", force: :cascade do |t|
     t.string   "title",                              null: false
+    t.integer  "sort_number",                        null: false
     t.boolean  "is_exist_free_text", default: false, null: false
     t.boolean  "is_multiple",        default: true,  null: false
     t.integer  "questionnaire_id",                   null: false
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(version: 20170614045742) do
   end
 
   create_table "questionnaires", force: :cascade do |t|
+    t.string   "access_token",       null: false
     t.string   "title",              null: false
     t.text     "header_discription"
     t.text     "footer_discription"
@@ -86,6 +88,7 @@ ActiveRecord::Schema.define(version: 20170614045742) do
     t.datetime "published_to",       null: false
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.index ["access_token"], name: "index_questionnaires_on_access_token", using: :btree
   end
 
   create_table "recruit_instruments", force: :cascade do |t|
