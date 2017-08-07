@@ -1,18 +1,33 @@
-    <div class="field">
-      <%= f.input :title, label: 'アンケートアイテムタイトル', class: 'form-control' %>
-    </div>
-    <div class="field">
-      <%= f.input :sort_number, label: 'ソート順', class: 'form-control' %>
-    </div>
-    <div class="field">
-      <%= f.input :is_exist_free_text, label: 'テキストエリア表示', class: 'form-control' %>
-    </div>
-    <div class="field">
-      <%= f.input :is_multiple, label: '選択肢複数選択可', class: 'form-control' %>
-    </div>
-    <%= f.simple_fields_for :questionnaire_choices_options do |o| %>
-      <%= render 'questionnaire_choices_option_fields', f: o %>
-    <% end %>
-    <%= link_to_add_association '選択肢追加', f, :questionnaire_choices_options, class: 'btn btn-default' %>
+<!--汎用で使いたいから application.js に書くべきだと思うんだけど、そこに書くとたまに動かなくなる　一旦ここに-->
+<%= javascript_tag do %>
+  $(function(){
+    $(".select2").select2({
+      tags: true,
+      tokenSeparators: [',', ' ']
+    });
+  });
+<% end %>
+<div class="field">
+  <%= f.input :title, label: 'アンケートアイテムタイトル', class: 'form-control' %>
+</div>
+<div class="field">
+  <%= f.input :sort_number, label: 'ソート順', class: 'form-control' %>
+</div>
+<div class="field">
+  <%= f.input :is_exist_free_text, label: 'テキストエリア表示', class: 'form-control' %>
+</div>
+<div class="field">
+  <%= f.input :is_multiple, label: '選択肢複数選択可', class: 'form-control' %>
+</div>
+<%= f.simple_fields_for :questionnaire_choices_options do |o| %>
+  <%= render 'questionnaire_choices_option_fields', f: o %>
+<% end %>
+<div class="field">
+  <%= f.association :questionnaire_choices_options,
+    required: false,
+    input_html: { class: 'select2' }
+  %>
+</div>
+<%= link_to_add_association '選択肢追加', f, :questionnaire_choices_options, class: 'btn btn-default' %>
 
-    <%= link_to_remove_association 'item削除', f, class: 'btn btn-default' %>
+<%= link_to_remove_association 'item削除', f, class: 'btn btn-default' %>

@@ -25,16 +25,16 @@
   </div>
 
   <div class="field">
-    <%= f.input :published_from, label: '回答開始期間', class: 'form-control date-picker', use_month_numbers: true  %>
+    <%= f.input :published_from, label: '回答開始期間', class: 'form-control date-picker', use_month_numbers: true %>
   </div>
 
   <div class="field">
-    <%= f.input :published_to, label: '回答終了期間', class: 'form-control date-picker', use_month_numbers: true  %>
+    <%= f.input :published_to, label: '回答終了期間', class: 'form-control date-picker', use_month_numbers: true %>
   </div>
   <%= f.simple_fields_for :questionnaire_items do |i| %>
     <%= render 'questionnaire_item_fields', f: i %>
   <% end %>
-  <%= link_to_add_association 'item追加', f, :questionnaire_items, class: 'btn btn-default' %>
+  <%= link_to_add_association 'item追加', f, :questionnaire_items %>
 
   <div class="actions">
     <%= f.submit 'アンケート作成' %>
