@@ -75,3 +75,5 @@ gem 'activerecord-session_store'
 gem 'cocoon'
 
 gem 'simple_form'
+
+gem 'webpacker', github: 'rails/webpacker'
