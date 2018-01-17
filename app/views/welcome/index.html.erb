@@ -1,6 +1,8 @@
+<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+<%= javascript_pack_tag 'hello_react', 'data-turbolinks-track': 'reload' %>
 <div class="container">
   <div class="row">
-    <h2>Hello World</h2>
+    <div id="react"></div>
     <p>
       The time is now: <%= Time.now %>
     </p>
@@ -16,6 +18,9 @@
     </p>
     <p>
       レスポンシブデザイン難しいというかbootstrapくんをまだ使いこなせてない
+    </p>
+    <p>
+      react 始めました！
     </p>
     <p>
       <%= link_to '団員募集', recruits_path %>
