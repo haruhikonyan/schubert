@@ -19,16 +19,12 @@ class Hello extends React.Component {
   render() {
     return (
       <div>
-        <h2>
-          Hello, {this.state.name}!
-        </h2>
+        <h2>Hello, {this.state.name}!</h2>
         <p>
           <label htmlFor="name">
             お名前:
           </label>
-          <input
-            id="name"
-            type="text"
+          <input id="name" type="text"
             value={this.state.name}
             onChange={(e) => this.updateName(e.target.value)}
           />
